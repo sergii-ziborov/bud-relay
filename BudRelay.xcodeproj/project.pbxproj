@@ -1,0 +1,859 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		035135250DA4D5EE9E4513B5 /* GardenBackdrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB92677522894C9B0C9032CE /* GardenBackdrop.swift */; };
+		03F09692D866C6E3129FD869 /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B7341275B0B7540D40EF3 /* Goals.swift */; };
+		0622C8FA211485A2194B8C7E /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D7D1877955178C708B4CF /* ProgressState.swift */; };
+		072468001119FA2592D4BBE4 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1B382545339AFBF0512F4B /* Levels.swift */; };
+		0B2E0B16E21AB652453BE8D9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06B27A45ABC0FE7B7591E3 /* Models.swift */; };
+		0C1C983DAD27940E78EF0F98 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55957F9FD5EE05CB9B5781FE /* Feedback.swift */; };
+		0D68F479D2278EA535E48211 /* Garden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9594BEFB457946A05DF18BD4 /* Garden.swift */; };
+		18DF413BF7A39E90368F7460 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A882267A2DF934774132A1A /* SettingsView.swift */; };
+		1982720E5E243D46466CF0D8 /* MarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F617296ED1A9A851CF687FD /* MarketView.swift */; };
+		38567287170E7DBD57F6C072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF4B20174CD78F2718FCE79 /* Assets.xcassets */; };
+		4933698AB11F457630742176 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD08F4EAA4E393DB3ADAF9 /* HomeView.swift */; };
+		4EEB5B1BC598C7C965A93A10 /* Relay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D1BD734C7F3E97DD8955CA /* Relay.swift */; };
+		603DD5260ABE12EB5ED0882D /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BD0CA275FB0C5268CFEEB2 /* PlotView.swift */; };
+		66DF48089EA634BA062716FF /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36194C78A2EF83D62B7EDBB /* Story.swift */; };
+		68F1260BC24739CD28F98304 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E76AA87A136867455DB88E /* HowToPlayView.swift */; };
+		6B485190AA5F983ADABAD44E /* SeededRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663C7050EAE2004F54CA719 /* SeededRNG.swift */; };
+		6BF70AAFD8546AD165FB3578 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B353D2CEF4C548CC0B6077F /* PlayView.swift */; };
+		6D5FFDFB5C3FED973F6BDE36 /* GardenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAB6D4AB6F6FF3FB5B5A955 /* GardenView.swift */; };
+		74B5E2F11312F20311D068B0 /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7271EC06912AE50351C007B /* DailyView.swift */; };
+		78D7EF249076E3A4C19BD457 /* TuningReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5556F692F844890146D75B /* TuningReportTests.swift */; };
+		7D31509748E3C8FE7FD45FBE /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F22627A1777D9A69E5F994 /* Market.swift */; };
+		80F5305B441882A1638156E8 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0395596C8CD895AB4FBAE /* BoardView.swift */; };
+		814293B2FDF9A3EAE3E04546 /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CA509EAF4E4C289EC3CAF7 /* Draft.swift */; };
+		85457B7F7FCCE76C7BE605CE /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A87941B29C2E0D66E634B40 /* ScreenshotTests.swift */; };
+		872EFE2512BBCFF6FF5D6FA5 /* FlowerArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F86A343334CE0608D10659 /* FlowerArt.swift */; };
+		8B6A2EED56E9AA41DE418C5A /* Rewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBE7532C1C84530AD4FFD7 /* Rewards.swift */; };
+		8BFF8A1D4124329BF0899B8E /* RelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B931D38CF9DA4C42BD0D6DB /* RelayTests.swift */; };
+		925404D85F27C92E66847662 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 026A41E3EA579545D6772410 /* PrivacyInfo.xcprivacy */; };
+		95DEBA42F268F224133B1A49 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338B9410492AF4999368E95 /* MapView.swift */; };
+		9CEA9588479969CD48175257 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F847552F5A9496869FA0 /* DesignSystem.swift */; };
+		9D656D3D95B48356E67A0713 /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E862241182838CF5A9CF69 /* Bot.swift */; };
+		A34F96DE306546CE2B5A4B6D /* DailyBloom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBBBB71EC96EB27CD401D73 /* DailyBloom.swift */; };
+		A5967BCE2504E0FAE7126D4E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1FA6ACC53F3253A9F3D04 /* Stores.swift */; };
+		A6BF1FF6863DD29809F49DE7 /* BudRelayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310F2FE3E7B86C86F096DA70 /* BudRelayUITests.swift */; };
+		B25C4F42DE257D5FC7D5E4DB /* GreenhouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C453C613E1D9323D832E2 /* GreenhouseView.swift */; };
+		CA965E8C88D1B5E4DB806CC8 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950DC1C3F77F3DF89882D6B /* ResultView.swift */; };
+		D251572C8127D820D55D3E9E /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40E46822F782C6C6E6DD99 /* AppModel.swift */; };
+		E139A08B12B2563E3F0FE263 /* PlaySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAD24B95C960D30649DD85 /* PlaySession.swift */; };
+		E519F8E98525F3955C8D4A27 /* EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DB8560D903B3FD8399299 /* EngineTests.swift */; };
+		ECA06298CE514755EB37ED7C /* LevelRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD596329E0A4D7741364F759 /* LevelRun.swift */; };
+		F208D1A874E7D21E4C1368E2 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D9C429EDCA5C9360308B0 /* Board.swift */; };
+		FA25CD3476714912A4676476 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB1AACA82D9489FBD66CC10 /* Components.swift */; };
+		FD794EA0A41000250BC6FD9C /* BudRelayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83EF7E08502033CA239E6B0 /* BudRelayApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0AD703FA2C1AD9158AFDF721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 648B95A55715A1EFF9B4AE15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEB8682B96B4F6ADD83A0BFD;
+			remoteInfo = BudRelay;
+		};
+		B344BB07F1FF5C7FB743A5A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 648B95A55715A1EFF9B4AE15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEB8682B96B4F6ADD83A0BFD;
+			remoteInfo = BudRelay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		026A41E3EA579545D6772410 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		0DB1AACA82D9489FBD66CC10 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		10762C4F7687002EEFB8D5D2 /* BudRelay.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BudRelay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13BAD24B95C960D30649DD85 /* PlaySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySession.swift; sourceTree = "<group>"; };
+		1B353D2CEF4C548CC0B6077F /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
+		1E40E46822F782C6C6E6DD99 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2663C7050EAE2004F54CA719 /* SeededRNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeededRNG.swift; sourceTree = "<group>"; };
+		2AE3F847552F5A9496869FA0 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		2B931D38CF9DA4C42BD0D6DB /* RelayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayTests.swift; sourceTree = "<group>"; };
+		310F2FE3E7B86C86F096DA70 /* BudRelayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudRelayUITests.swift; sourceTree = "<group>"; };
+		31A0395596C8CD895AB4FBAE /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		3CBFA151EED37145F0A0CD88 /* BudRelayTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BudRelayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5556F692F844890146D75B /* TuningReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuningReportTests.swift; sourceTree = "<group>"; };
+		41BD0CA275FB0C5268CFEEB2 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
+		47F22627A1777D9A69E5F994 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		480B7341275B0B7540D40EF3 /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
+		4F9DB8560D903B3FD8399299 /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
+		50D1BD734C7F3E97DD8955CA /* Relay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relay.swift; sourceTree = "<group>"; };
+		55957F9FD5EE05CB9B5781FE /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		64B448993F69942C23482EF3 /* BudRelayUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BudRelayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66BA786BA2669139573EC93C /* BudRelay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BudRelay.entitlements; sourceTree = "<group>"; };
+		6A882267A2DF934774132A1A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8A87941B29C2E0D66E634B40 /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
+		8CBBE7532C1C84530AD4FFD7 /* Rewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rewards.swift; sourceTree = "<group>"; };
+		8F617296ED1A9A851CF687FD /* MarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketView.swift; sourceTree = "<group>"; };
+		90E862241182838CF5A9CF69 /* Bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bot.swift; sourceTree = "<group>"; };
+		91CD08F4EAA4E393DB3ADAF9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9594BEFB457946A05DF18BD4 /* Garden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garden.swift; sourceTree = "<group>"; };
+		AA1B382545339AFBF0512F4B /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
+		B2E76AA87A136867455DB88E /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		B36194C78A2EF83D62B7EDBB /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		B41C453C613E1D9323D832E2 /* GreenhouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenhouseView.swift; sourceTree = "<group>"; };
+		B4F86A343334CE0608D10659 /* FlowerArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerArt.swift; sourceTree = "<group>"; };
+		BD596329E0A4D7741364F759 /* LevelRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelRun.swift; sourceTree = "<group>"; };
+		C338B9410492AF4999368E95 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C7271EC06912AE50351C007B /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
+		C950DC1C3F77F3DF89882D6B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		D1E1FA6ACC53F3253A9F3D04 /* Stores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
+		D6CA509EAF4E4C289EC3CAF7 /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
+		E86D9C429EDCA5C9360308B0 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		EB92677522894C9B0C9032CE /* GardenBackdrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenBackdrop.swift; sourceTree = "<group>"; };
+		ED06B27A45ABC0FE7B7591E3 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F64D7D1877955178C708B4CF /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
+		F83EF7E08502033CA239E6B0 /* BudRelayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudRelayApp.swift; sourceTree = "<group>"; };
+		FCAB6D4AB6F6FF3FB5B5A955 /* GardenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenView.swift; sourceTree = "<group>"; };
+		FCBBBB71EC96EB27CD401D73 /* DailyBloom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBloom.swift; sourceTree = "<group>"; };
+		FCF4B20174CD78F2718FCE79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		10ED7DAB673A5822356207CD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1E40E46822F782C6C6E6DD99 /* AppModel.swift */,
+				F83EF7E08502033CA239E6B0 /* BudRelayApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		16B405E0E6801393BBD8FB36 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FCF4B20174CD78F2718FCE79 /* Assets.xcassets */,
+				026A41E3EA579545D6772410 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1C0EB7752442865C2D36180B /* Greenhouse */ = {
+			isa = PBXGroup;
+			children = (
+				B41C453C613E1D9323D832E2 /* GreenhouseView.swift */,
+			);
+			path = Greenhouse;
+			sourceTree = "<group>";
+		};
+		1E02F6D26115E64F85A5B287 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				55957F9FD5EE05CB9B5781FE /* Feedback.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		1FF817929A6E53EE0D9450EE /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				31A0395596C8CD895AB4FBAE /* BoardView.swift */,
+				B4F86A343334CE0608D10659 /* FlowerArt.swift */,
+				41BD0CA275FB0C5268CFEEB2 /* PlotView.swift */,
+			);
+			path = Art;
+			sourceTree = "<group>";
+		};
+		27A56126E4D94152400E2432 /* BudRelayUITests */ = {
+			isa = PBXGroup;
+			children = (
+				310F2FE3E7B86C86F096DA70 /* BudRelayUITests.swift */,
+				8A87941B29C2E0D66E634B40 /* ScreenshotTests.swift */,
+			);
+			path = BudRelayUITests;
+			sourceTree = "<group>";
+		};
+		2EEBA1B2DFFC259C47FB6BC0 /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				9594BEFB457946A05DF18BD4 /* Garden.swift */,
+				47F22627A1777D9A69E5F994 /* Market.swift */,
+				B36194C78A2EF83D62B7EDBB /* Story.swift */,
+			);
+			path = Meta;
+			sourceTree = "<group>";
+		};
+		3BBE21395D2DFE46C849CC88 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				1FF817929A6E53EE0D9450EE /* Art */,
+				77D5D57F6CB620E384ED14E8 /* Engine */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		48CC0161D8A590CB8D3BBDD8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				91CD08F4EAA4E393DB3ADAF9 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		54DFC5409DFEE83DA51CD646 /* Garden */ = {
+			isa = PBXGroup;
+			children = (
+				FCAB6D4AB6F6FF3FB5B5A955 /* GardenView.swift */,
+			);
+			path = Garden;
+			sourceTree = "<group>";
+		};
+		596887300375DC4D798AADAF /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F64D7D1877955178C708B4CF /* ProgressState.swift */,
+				D1E1FA6ACC53F3253A9F3D04 /* Stores.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		5B27E0FDA5AB53F2FF969E8F /* Play */ = {
+			isa = PBXGroup;
+			children = (
+				1B353D2CEF4C548CC0B6077F /* PlayView.swift */,
+			);
+			path = Play;
+			sourceTree = "<group>";
+		};
+		5E74B68EBFFE883D66CF07C3 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				0DB1AACA82D9489FBD66CC10 /* Components.swift */,
+				2AE3F847552F5A9496869FA0 /* DesignSystem.swift */,
+				EB92677522894C9B0C9032CE /* GardenBackdrop.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		656AF6E9F683F5986D26F10D /* Daily */ = {
+			isa = PBXGroup;
+			children = (
+				C7271EC06912AE50351C007B /* DailyView.swift */,
+			);
+			path = Daily;
+			sourceTree = "<group>";
+		};
+		77D5D57F6CB620E384ED14E8 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				E86D9C429EDCA5C9360308B0 /* Board.swift */,
+				90E862241182838CF5A9CF69 /* Bot.swift */,
+				FCBBBB71EC96EB27CD401D73 /* DailyBloom.swift */,
+				D6CA509EAF4E4C289EC3CAF7 /* Draft.swift */,
+				480B7341275B0B7540D40EF3 /* Goals.swift */,
+				BD596329E0A4D7741364F759 /* LevelRun.swift */,
+				AA1B382545339AFBF0512F4B /* Levels.swift */,
+				ED06B27A45ABC0FE7B7591E3 /* Models.swift */,
+				13BAD24B95C960D30649DD85 /* PlaySession.swift */,
+				50D1BD734C7F3E97DD8955CA /* Relay.swift */,
+				8CBBE7532C1C84530AD4FFD7 /* Rewards.swift */,
+				2663C7050EAE2004F54CA719 /* SeededRNG.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		798FCDAB0182FE1721BD755A /* Market */ = {
+			isa = PBXGroup;
+			children = (
+				8F617296ED1A9A851CF687FD /* MarketView.swift */,
+			);
+			path = Market;
+			sourceTree = "<group>";
+		};
+		7BE05F675EDA1FCBB14BF5F2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C338B9410492AF4999368E95 /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		7EED5FF2984C31AA331ADE83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10762C4F7687002EEFB8D5D2 /* BudRelay.app */,
+				3CBFA151EED37145F0A0CD88 /* BudRelayTests.xctest */,
+				64B448993F69942C23482EF3 /* BudRelayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8ED25CB078982F0C7B3290AE /* BudRelay */ = {
+			isa = PBXGroup;
+			children = (
+				10ED7DAB673A5822356207CD /* App */,
+				1E02F6D26115E64F85A5B287 /* Audio */,
+				5E74B68EBFFE883D66CF07C3 /* DesignSystem */,
+				A2F2FCDA0B21F0E9EAA8D0B9 /* Features */,
+				3BBE21395D2DFE46C849CC88 /* Game */,
+				2EEBA1B2DFFC259C47FB6BC0 /* Meta */,
+				596887300375DC4D798AADAF /* Persistence */,
+				16B405E0E6801393BBD8FB36 /* Resources */,
+				66BA786BA2669139573EC93C /* BudRelay.entitlements */,
+			);
+			path = BudRelay;
+			sourceTree = "<group>";
+		};
+		A2F2FCDA0B21F0E9EAA8D0B9 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				656AF6E9F683F5986D26F10D /* Daily */,
+				54DFC5409DFEE83DA51CD646 /* Garden */,
+				1C0EB7752442865C2D36180B /* Greenhouse */,
+				48CC0161D8A590CB8D3BBDD8 /* Home */,
+				BEBEF7D70B69551C81CA0757 /* HowToPlay */,
+				7BE05F675EDA1FCBB14BF5F2 /* Map */,
+				798FCDAB0182FE1721BD755A /* Market */,
+				5B27E0FDA5AB53F2FF969E8F /* Play */,
+				C352CC057CB7568418CF6357 /* Result */,
+				D824B486DA586A7FB43FD2E4 /* Settings */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		BEBEF7D70B69551C81CA0757 /* HowToPlay */ = {
+			isa = PBXGroup;
+			children = (
+				B2E76AA87A136867455DB88E /* HowToPlayView.swift */,
+			);
+			path = HowToPlay;
+			sourceTree = "<group>";
+		};
+		C352CC057CB7568418CF6357 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				C950DC1C3F77F3DF89882D6B /* ResultView.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		D824B486DA586A7FB43FD2E4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6A882267A2DF934774132A1A /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		EB131E51BA29E8629E2888A1 /* BudRelayTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F9DB8560D903B3FD8399299 /* EngineTests.swift */,
+				2B931D38CF9DA4C42BD0D6DB /* RelayTests.swift */,
+				3E5556F692F844890146D75B /* TuningReportTests.swift */,
+			);
+			path = BudRelayTests;
+			sourceTree = "<group>";
+		};
+		F27E7A839440A8C42319D4F4 = {
+			isa = PBXGroup;
+			children = (
+				8ED25CB078982F0C7B3290AE /* BudRelay */,
+				EB131E51BA29E8629E2888A1 /* BudRelayTests */,
+				27A56126E4D94152400E2432 /* BudRelayUITests */,
+				7EED5FF2984C31AA331ADE83 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A2434F0455882AE63BA88D2 /* BudRelayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 519350DB124D7BBE0C4EA7BB /* Build configuration list for PBXNativeTarget "BudRelayUITests" */;
+			buildPhases = (
+				CF33E08410BB67B031CB75D4 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A178A0A5F68BFDA00586244E /* PBXTargetDependency */,
+			);
+			name = BudRelayUITests;
+			packageProductDependencies = (
+			);
+			productName = BudRelayUITests;
+			productReference = 64B448993F69942C23482EF3 /* BudRelayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		D2FACA4BE36859F0FE167FA5 /* BudRelayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CAEFB91C94BFC99146F3E49 /* Build configuration list for PBXNativeTarget "BudRelayTests" */;
+			buildPhases = (
+				814895EDF12FF4CEDF3056C1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F0937F971AC890578ACDDDB /* PBXTargetDependency */,
+			);
+			name = BudRelayTests;
+			packageProductDependencies = (
+			);
+			productName = BudRelayTests;
+			productReference = 3CBFA151EED37145F0A0CD88 /* BudRelayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FEB8682B96B4F6ADD83A0BFD /* BudRelay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F816A44FE8C02095BE509BF /* Build configuration list for PBXNativeTarget "BudRelay" */;
+			buildPhases = (
+				FD147E3DE6DC44E1100C19AA /* Sources */,
+				A57E2F0C9C459F986F4967C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BudRelay;
+			packageProductDependencies = (
+			);
+			productName = BudRelay;
+			productReference = 10762C4F7687002EEFB8D5D2 /* BudRelay.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		648B95A55715A1EFF9B4AE15 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					6A2434F0455882AE63BA88D2 = {
+						DevelopmentTeam = XMS5ZC28UJ;
+						TestTargetID = FEB8682B96B4F6ADD83A0BFD;
+					};
+					D2FACA4BE36859F0FE167FA5 = {
+						DevelopmentTeam = XMS5ZC28UJ;
+					};
+					FEB8682B96B4F6ADD83A0BFD = {
+						DevelopmentTeam = XMS5ZC28UJ;
+					};
+				};
+			};
+			buildConfigurationList = EA35D2333EDB62C07A1C7198 /* Build configuration list for PBXProject "BudRelay" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F27E7A839440A8C42319D4F4;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7EED5FF2984C31AA331ADE83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FEB8682B96B4F6ADD83A0BFD /* BudRelay */,
+				D2FACA4BE36859F0FE167FA5 /* BudRelayTests */,
+				6A2434F0455882AE63BA88D2 /* BudRelayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A57E2F0C9C459F986F4967C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38567287170E7DBD57F6C072 /* Assets.xcassets in Resources */,
+				925404D85F27C92E66847662 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		814895EDF12FF4CEDF3056C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E519F8E98525F3955C8D4A27 /* EngineTests.swift in Sources */,
+				8BFF8A1D4124329BF0899B8E /* RelayTests.swift in Sources */,
+				78D7EF249076E3A4C19BD457 /* TuningReportTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF33E08410BB67B031CB75D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6BF1FF6863DD29809F49DE7 /* BudRelayUITests.swift in Sources */,
+				85457B7F7FCCE76C7BE605CE /* ScreenshotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD147E3DE6DC44E1100C19AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D251572C8127D820D55D3E9E /* AppModel.swift in Sources */,
+				F208D1A874E7D21E4C1368E2 /* Board.swift in Sources */,
+				80F5305B441882A1638156E8 /* BoardView.swift in Sources */,
+				9D656D3D95B48356E67A0713 /* Bot.swift in Sources */,
+				FD794EA0A41000250BC6FD9C /* BudRelayApp.swift in Sources */,
+				FA25CD3476714912A4676476 /* Components.swift in Sources */,
+				A34F96DE306546CE2B5A4B6D /* DailyBloom.swift in Sources */,
+				74B5E2F11312F20311D068B0 /* DailyView.swift in Sources */,
+				9CEA9588479969CD48175257 /* DesignSystem.swift in Sources */,
+				814293B2FDF9A3EAE3E04546 /* Draft.swift in Sources */,
+				0C1C983DAD27940E78EF0F98 /* Feedback.swift in Sources */,
+				872EFE2512BBCFF6FF5D6FA5 /* FlowerArt.swift in Sources */,
+				0D68F479D2278EA535E48211 /* Garden.swift in Sources */,
+				035135250DA4D5EE9E4513B5 /* GardenBackdrop.swift in Sources */,
+				6D5FFDFB5C3FED973F6BDE36 /* GardenView.swift in Sources */,
+				03F09692D866C6E3129FD869 /* Goals.swift in Sources */,
+				B25C4F42DE257D5FC7D5E4DB /* GreenhouseView.swift in Sources */,
+				4933698AB11F457630742176 /* HomeView.swift in Sources */,
+				68F1260BC24739CD28F98304 /* HowToPlayView.swift in Sources */,
+				ECA06298CE514755EB37ED7C /* LevelRun.swift in Sources */,
+				072468001119FA2592D4BBE4 /* Levels.swift in Sources */,
+				95DEBA42F268F224133B1A49 /* MapView.swift in Sources */,
+				7D31509748E3C8FE7FD45FBE /* Market.swift in Sources */,
+				1982720E5E243D46466CF0D8 /* MarketView.swift in Sources */,
+				0B2E0B16E21AB652453BE8D9 /* Models.swift in Sources */,
+				E139A08B12B2563E3F0FE263 /* PlaySession.swift in Sources */,
+				6BF70AAFD8546AD165FB3578 /* PlayView.swift in Sources */,
+				603DD5260ABE12EB5ED0882D /* PlotView.swift in Sources */,
+				0622C8FA211485A2194B8C7E /* ProgressState.swift in Sources */,
+				4EEB5B1BC598C7C965A93A10 /* Relay.swift in Sources */,
+				CA965E8C88D1B5E4DB806CC8 /* ResultView.swift in Sources */,
+				8B6A2EED56E9AA41DE418C5A /* Rewards.swift in Sources */,
+				6B485190AA5F983ADABAD44E /* SeededRNG.swift in Sources */,
+				18DF413BF7A39E90368F7460 /* SettingsView.swift in Sources */,
+				A5967BCE2504E0FAE7126D4E /* Stores.swift in Sources */,
+				66DF48089EA634BA062716FF /* Story.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F0937F971AC890578ACDDDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FEB8682B96B4F6ADD83A0BFD /* BudRelay */;
+			targetProxy = 0AD703FA2C1AD9158AFDF721 /* PBXContainerItemProxy */;
+		};
+		A178A0A5F68BFDA00586244E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FEB8682B96B4F6ADD83A0BFD /* BudRelay */;
+			targetProxy = B344BB07F1FF5C7FB743A5A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3E5E0B136D9ECA52C413AB1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BudRelay/BudRelay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = en;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bud Relay";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_BackgroundColor = creamBackground;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiiziborov.budrelay;
+				PRODUCT_NAME = BudRelay;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		46A25711535F49DBE7DEF92B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BudRelay/BudRelay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = en;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bud Relay";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_BackgroundColor = creamBackground;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiiziborov.budrelay;
+				PRODUCT_NAME = BudRelay;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4AF38CD700A50ECCD39D6C9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = XMS5ZC28UJ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		69EBAB6DDC381E118EEAD410 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiiziborov.budrelay.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BudRelay;
+			};
+			name = Debug;
+		};
+		85560D2DD51F33180FC7785A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = XMS5ZC28UJ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ACB83149E854440401F28E8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiiziborov.budrelay.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BudRelay.app/BudRelay";
+			};
+			name = Debug;
+		};
+		C1EA5C686F98F8F31B4B189B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiiziborov.budrelay.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BudRelay.app/BudRelay";
+			};
+			name = Release;
+		};
+		C3DB3D06C1DE26450DC8BBB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiiziborov.budrelay.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BudRelay;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		519350DB124D7BBE0C4EA7BB /* Build configuration list for PBXNativeTarget "BudRelayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69EBAB6DDC381E118EEAD410 /* Debug */,
+				C3DB3D06C1DE26450DC8BBB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8CAEFB91C94BFC99146F3E49 /* Build configuration list for PBXNativeTarget "BudRelayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACB83149E854440401F28E8B /* Debug */,
+				C1EA5C686F98F8F31B4B189B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8F816A44FE8C02095BE509BF /* Build configuration list for PBXNativeTarget "BudRelay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46A25711535F49DBE7DEF92B /* Debug */,
+				3E5E0B136D9ECA52C413AB1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EA35D2333EDB62C07A1C7198 /* Build configuration list for PBXProject "BudRelay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AF38CD700A50ECCD39D6C9D /* Debug */,
+				85560D2DD51F33180FC7785A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 648B95A55715A1EFF9B4AE15 /* Project object */;
+}
