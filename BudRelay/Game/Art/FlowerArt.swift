@@ -57,6 +57,48 @@ enum FlowerArt {
                 FlowerColors(petal: Color(red: 0.84, green: 0.26, blue: 0.16), petalDark: Color(red: 0.64, green: 0.14, blue: 0.08), petalLight: Color(red: 0.96, green: 0.48, blue: 0.32), center: Color(red: 0.44, green: 0.10, blue: 0.06)),
                 FlowerColors(petal: Color(red: 0.99, green: 0.93, blue: 0.76), petalDark: Color(red: 0.88, green: 0.78, blue: 0.54), petalLight: .white, center: Color(red: 0.62, green: 0.46, blue: 0.20)),
             ]
+        case .daffodil:
+            table = [
+                FlowerColors(petal: Color(red: 1.0, green: 0.86, blue: 0.22), petalDark: Color(red: 0.88, green: 0.66, blue: 0.08), petalLight: Color(red: 1.0, green: 0.95, blue: 0.54), center: Color(red: 0.96, green: 0.56, blue: 0.08)),
+                FlowerColors(petal: Color(red: 1.0, green: 0.96, blue: 0.78), petalDark: Color(red: 0.88, green: 0.80, blue: 0.56), petalLight: .white, center: Color(red: 0.98, green: 0.76, blue: 0.14)),
+                FlowerColors(petal: Color(red: 1.0, green: 0.92, blue: 0.72), petalDark: Color(red: 0.92, green: 0.70, blue: 0.46), petalLight: .white, center: Color(red: 0.98, green: 0.52, blue: 0.30)),
+                FlowerColors(petal: Color(red: 0.99, green: 0.99, blue: 0.95), petalDark: Color(red: 0.82, green: 0.84, blue: 0.76), petalLight: .white, center: Color(red: 0.94, green: 0.82, blue: 0.34)),
+            ]
+        case .hydrangea:
+            table = [
+                FlowerColors(petal: Color(red: 0.48, green: 0.68, blue: 0.94), petalDark: Color(red: 0.30, green: 0.48, blue: 0.78), petalLight: Color(red: 0.70, green: 0.82, blue: 1.0), center: Color(red: 0.94, green: 0.82, blue: 0.30)),
+                FlowerColors(petal: Color(red: 0.94, green: 0.58, blue: 0.76), petalDark: Color(red: 0.76, green: 0.38, blue: 0.60), petalLight: Color(red: 1.0, green: 0.78, blue: 0.88), center: Color(red: 0.94, green: 0.80, blue: 0.30)),
+                FlowerColors(petal: Color(red: 0.66, green: 0.50, blue: 0.88), petalDark: Color(red: 0.46, green: 0.30, blue: 0.68), petalLight: Color(red: 0.82, green: 0.72, blue: 0.98), center: Color(red: 0.92, green: 0.78, blue: 0.30)),
+                FlowerColors(petal: Color(red: 0.96, green: 0.98, blue: 0.94), petalDark: Color(red: 0.76, green: 0.82, blue: 0.72), petalLight: .white, center: Color(red: 0.82, green: 0.74, blue: 0.30)),
+            ]
+        case .aster:
+            table = [
+                FlowerColors(petal: Color(red: 0.54, green: 0.40, blue: 0.84), petalDark: Color(red: 0.36, green: 0.24, blue: 0.66), petalLight: Color(red: 0.74, green: 0.64, blue: 0.96), center: Color(red: 0.96, green: 0.74, blue: 0.16)),
+                FlowerColors(petal: Color(red: 0.94, green: 0.52, blue: 0.72), petalDark: Color(red: 0.74, green: 0.32, blue: 0.54), petalLight: Color(red: 1.0, green: 0.72, blue: 0.84), center: Color(red: 0.96, green: 0.72, blue: 0.14)),
+                FlowerColors(petal: Color(red: 0.40, green: 0.56, blue: 0.90), petalDark: Color(red: 0.24, green: 0.38, blue: 0.72), petalLight: Color(red: 0.64, green: 0.74, blue: 0.98), center: Color(red: 0.96, green: 0.76, blue: 0.18)),
+                FlowerColors(petal: Color(red: 0.98, green: 0.97, blue: 0.94), petalDark: Color(red: 0.78, green: 0.78, blue: 0.72), petalLight: .white, center: Color(red: 0.96, green: 0.74, blue: 0.16)),
+            ]
+        case .peony:
+            table = [
+                FlowerColors(petal: Color(red: 0.97, green: 0.62, blue: 0.76), petalDark: Color(red: 0.78, green: 0.36, blue: 0.56), petalLight: Color(red: 1.0, green: 0.82, blue: 0.88), center: Color(red: 0.72, green: 0.24, blue: 0.44)),
+                FlowerColors(petal: Color(red: 0.98, green: 0.58, blue: 0.48), petalDark: Color(red: 0.80, green: 0.36, blue: 0.28), petalLight: Color(red: 1.0, green: 0.78, blue: 0.68), center: Color(red: 0.68, green: 0.24, blue: 0.20)),
+                FlowerColors(petal: Color(red: 0.76, green: 0.16, blue: 0.32), petalDark: Color(red: 0.54, green: 0.08, blue: 0.20), petalLight: Color(red: 0.92, green: 0.38, blue: 0.50), center: Color(red: 0.46, green: 0.06, blue: 0.16)),
+                FlowerColors(petal: Color(red: 1.0, green: 0.96, blue: 0.88), petalDark: Color(red: 0.86, green: 0.76, blue: 0.66), petalLight: .white, center: Color(red: 0.74, green: 0.58, blue: 0.42)),
+            ]
+        case .poppy:
+            table = [
+                FlowerColors(petal: Color(red: 0.91, green: 0.20, blue: 0.20), petalDark: Color(red: 0.66, green: 0.06, blue: 0.09), petalLight: Color(red: 0.98, green: 0.40, blue: 0.35), center: Color(red: 0.16, green: 0.12, blue: 0.10)),
+                FlowerColors(petal: Color(red: 0.98, green: 0.55, blue: 0.48), petalDark: Color(red: 0.82, green: 0.28, blue: 0.28), petalLight: Color(red: 1.0, green: 0.74, blue: 0.67), center: Color(red: 0.25, green: 0.16, blue: 0.12)),
+                FlowerColors(petal: Color(red: 0.98, green: 0.94, blue: 0.82), petalDark: Color(red: 0.82, green: 0.76, blue: 0.62), petalLight: .white, center: Color(red: 0.24, green: 0.18, blue: 0.12)),
+                FlowerColors(petal: Color(red: 0.55, green: 0.20, blue: 0.42), petalDark: Color(red: 0.34, green: 0.08, blue: 0.24), petalLight: Color(red: 0.76, green: 0.42, blue: 0.63), center: Color(red: 0.16, green: 0.08, blue: 0.12)),
+            ]
+        case .iris:
+            table = [
+                FlowerColors(petal: Color(red: 0.45, green: 0.52, blue: 0.88), petalDark: Color(red: 0.25, green: 0.28, blue: 0.66), petalLight: Color(red: 0.68, green: 0.72, blue: 0.98), center: Color(red: 0.98, green: 0.74, blue: 0.24)),
+                FlowerColors(petal: Color(red: 0.93, green: 0.66, blue: 0.22), petalDark: Color(red: 0.70, green: 0.40, blue: 0.08), petalLight: Color(red: 1.0, green: 0.84, blue: 0.45), center: Color(red: 0.50, green: 0.28, blue: 0.06)),
+                FlowerColors(petal: Color(red: 0.96, green: 0.96, blue: 0.92), petalDark: Color(red: 0.72, green: 0.74, blue: 0.78), petalLight: .white, center: Color(red: 0.96, green: 0.70, blue: 0.24)),
+                FlowerColors(petal: Color(red: 0.58, green: 0.30, blue: 0.78), petalDark: Color(red: 0.36, green: 0.14, blue: 0.56), petalLight: Color(red: 0.78, green: 0.57, blue: 0.94), center: Color(red: 0.98, green: 0.72, blue: 0.22)),
+            ]
         }
         return table[min(max(variant, 0), table.count - 1)]
     }
@@ -89,6 +131,12 @@ enum FlowerArt {
                 case .sunflower: drawSunflower(colors: colors, in: &context, p: p, rect: rect, s: s)
                 case .rose: drawRose(colors: colors, in: &context, p: p, rect: rect, s: s)
                 case .marigold: drawMarigold(colors: colors, in: &context, p: p, rect: rect, s: s)
+                case .daffodil: drawDaffodil(colors: colors, in: &context, p: p, rect: rect, s: s)
+                case .hydrangea: drawHydrangea(colors: colors, in: &context, p: p, rect: rect, s: s)
+                case .aster: drawAster(colors: colors, in: &context, p: p, rect: rect, s: s)
+                case .peony: drawPeony(colors: colors, in: &context, p: p, rect: rect, s: s)
+                case .poppy: drawPoppy(colors: colors, in: &context, p: p, rect: rect, s: s)
+                case .iris: drawIris(colors: colors, in: &context, p: p, rect: rect, s: s)
                 case .lavender: break
                 }
             }
@@ -255,6 +303,87 @@ enum FlowerArt {
         petals(count: 10, cx: 0.5, cy: 0.40, radius: 0.08, width: 0.12, height: 0.18, color: colors.petal, in: &context, p: p, s: s, phase: 0.3)
         petals(count: 8, cx: 0.5, cy: 0.40, radius: 0.03, width: 0.10, height: 0.14, color: colors.petalLight, in: &context, p: p, s: s, phase: 0.1)
         context.fill(Path(ellipseIn: rect(0.5, 0.40, 0.09, 0.09)), with: .color(colors.center))
+    }
+
+    private static func drawDaffodil(colors: FlowerColors, in context: inout GraphicsContext, p: (CGFloat, CGFloat) -> CGPoint, rect: (CGFloat, CGFloat, CGFloat, CGFloat) -> CGRect, s: CGFloat) {
+        petals(count: 6, cx: 0.5, cy: 0.40, radius: 0.13, width: 0.19, height: 0.34, color: colors.petalDark.opacity(0.55), in: &context, p: p, s: s, phase: 0.12)
+        petals(count: 6, cx: 0.5, cy: 0.40, radius: 0.12, width: 0.18, height: 0.32, color: colors.petal, in: &context, p: p, s: s)
+        context.fill(Path(ellipseIn: rect(0.5, 0.40, 0.29, 0.29)), with: .color(colors.center))
+        context.fill(Path(ellipseIn: rect(0.5, 0.40, 0.18, 0.18)), with: .color(colors.petalDark.opacity(0.72)))
+    }
+
+    private static func drawHydrangea(colors: FlowerColors, in context: inout GraphicsContext, p: (CGFloat, CGFloat) -> CGPoint, rect: (CGFloat, CGFloat, CGFloat, CGFloat) -> CGRect, s: CGFloat) {
+        let florets: [(CGFloat, CGFloat, CGFloat)] = [
+            (0.35, 0.31, 0.15), (0.50, 0.26, 0.16), (0.65, 0.31, 0.15),
+            (0.29, 0.44, 0.15), (0.43, 0.42, 0.17), (0.58, 0.42, 0.17), (0.72, 0.44, 0.15),
+            (0.38, 0.56, 0.16), (0.52, 0.55, 0.17), (0.65, 0.55, 0.15),
+        ]
+        for (index, floret) in florets.enumerated() {
+            let color = index.isMultiple(of: 3) ? colors.petalLight : (index.isMultiple(of: 2) ? colors.petalDark : colors.petal)
+            petals(count: 4, cx: floret.0, cy: floret.1, radius: floret.2 * 0.20, width: floret.2 * 0.55, height: floret.2 * 0.70, color: color, in: &context, p: p, s: s, phase: .pi / 4)
+            context.fill(Path(ellipseIn: rect(floret.0, floret.1, 0.025, 0.025)), with: .color(colors.center))
+        }
+    }
+
+    private static func drawAster(colors: FlowerColors, in context: inout GraphicsContext, p: (CGFloat, CGFloat) -> CGPoint, rect: (CGFloat, CGFloat, CGFloat, CGFloat) -> CGRect, s: CGFloat) {
+        petals(count: 22, cx: 0.5, cy: 0.40, radius: 0.16, width: 0.065, height: 0.33, color: colors.petalDark, in: &context, p: p, s: s, phase: 0.08)
+        petals(count: 22, cx: 0.5, cy: 0.40, radius: 0.13, width: 0.06, height: 0.29, color: colors.petal, in: &context, p: p, s: s)
+        context.fill(Path(ellipseIn: rect(0.5, 0.40, 0.22, 0.22)), with: .radialGradient(
+            Gradient(colors: [colors.center, colors.center.opacity(0.72)]), center: p(0.47, 0.37), startRadius: 0, endRadius: 0.12 * s
+        ))
+    }
+
+    private static func drawPeony(colors: FlowerColors, in context: inout GraphicsContext, p: (CGFloat, CGFloat) -> CGPoint, rect: (CGFloat, CGFloat, CGFloat, CGFloat) -> CGRect, s: CGFloat) {
+        let center = p(0.5, 0.40)
+        for ring in 0..<3 {
+            let count = 10 - ring * 2
+            let radius = CGFloat(3 - ring) * 0.055 * s
+            let diameter = CGFloat(3 - ring) * 0.075 * s + 0.14 * s
+            for index in 0..<count {
+                let angle = CGFloat(index) / CGFloat(count) * 2 * .pi + CGFloat(ring) * 0.35
+                let petal = CGRect(x: center.x + cos(angle) * radius - diameter / 2, y: center.y + sin(angle) * radius - diameter / 2, width: diameter, height: diameter)
+                let color = ring == 0 ? colors.petalDark : (ring == 1 ? colors.petal : colors.petalLight)
+                context.fill(Path(ellipseIn: petal), with: .color(color))
+            }
+        }
+        context.fill(Path(ellipseIn: rect(0.5, 0.40, 0.12, 0.12)), with: .color(colors.petal))
+    }
+
+    private static func drawPoppy(colors: FlowerColors, in context: inout GraphicsContext, p: (CGFloat, CGFloat) -> CGPoint, rect: (CGFloat, CGFloat, CGFloat, CGFloat) -> CGRect, s: CGFloat) {
+        let center = p(0.5, 0.40)
+        for index in 0..<4 {
+            let angle = CGFloat(index) / 4 * 2 * .pi + .pi / 4
+            context.drawLayer { layer in
+                layer.translateBy(x: center.x, y: center.y)
+                layer.rotate(by: .radians(angle))
+                let petal = Path(ellipseIn: CGRect(x: -0.17 * s, y: -0.34 * s, width: 0.34 * s, height: 0.38 * s))
+                layer.fill(petal, with: .color(index.isMultiple(of: 2) ? colors.petal : colors.petalLight))
+            }
+        }
+        context.fill(Path(ellipseIn: rect(0.5, 0.40, 0.22, 0.22)), with: .color(colors.center))
+        for index in 0..<10 {
+            let angle = CGFloat(index) / 10 * 2 * .pi
+            let dot = CGRect(x: center.x + cos(angle) * 0.085 * s - 0.012 * s, y: center.y + sin(angle) * 0.085 * s - 0.012 * s, width: 0.024 * s, height: 0.024 * s)
+            context.fill(Path(ellipseIn: dot), with: .color(colors.petalDark))
+        }
+    }
+
+    private static func drawIris(colors: FlowerColors, in context: inout GraphicsContext, p: (CGFloat, CGFloat) -> CGPoint, rect: (CGFloat, CGFloat, CGFloat, CGFloat) -> CGRect, s: CGFloat) {
+        let center = p(0.5, 0.41)
+        for index in 0..<3 {
+            let angle = CGFloat(index) / 3 * 2 * .pi
+            context.drawLayer { layer in
+                layer.translateBy(x: center.x, y: center.y)
+                layer.rotate(by: .radians(angle))
+                let standard = Path(ellipseIn: CGRect(x: -0.09 * s, y: -0.34 * s, width: 0.18 * s, height: 0.34 * s))
+                layer.fill(standard, with: .color(colors.petalLight))
+                let fall = Path(ellipseIn: CGRect(x: -0.13 * s, y: 0.01 * s, width: 0.26 * s, height: 0.30 * s))
+                layer.fill(fall, with: .color(colors.petal))
+                let beard = Path(ellipseIn: CGRect(x: -0.025 * s, y: 0.06 * s, width: 0.05 * s, height: 0.16 * s))
+                layer.fill(beard, with: .color(colors.center))
+            }
+        }
+        context.fill(Path(ellipseIn: rect(0.5, 0.41, 0.12, 0.12)), with: .color(colors.petalDark))
     }
 }
 

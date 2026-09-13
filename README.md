@@ -4,6 +4,22 @@
 
 A relay puzzle about restoring a neighbourhood's gardens. You place buds on a 5×5 bed. Each bud shows how many care cycles it needs. When a flower blooms it hands care to its neighbours, and a bed you planned well opens in one long wave. The flowers you grow fill bouquet orders and decorate a garden that is yours to lay out.
 
+[Player guide](docs/PLAY-GUIDE.md) · [App Store notes](docs/APP-STORE.md)
+
+## Screenshots
+
+| Puzzle | Garden | Greenhouse |
+| --- | --- | --- |
+| <img src="docs/screenshots/02-play.png" width="240" alt="Bud Relay puzzle board"> | <img src="docs/screenshots/07-garden.png" width="240" alt="Camera-controlled garden estate"> | <img src="docs/screenshots/08-greenhouse.png" width="240" alt="Flower encyclopedia"> |
+
+| Home | Market | Daily Bloom |
+| --- | --- | --- |
+| <img src="docs/screenshots/01-home.png" width="240" alt="Bud Relay home"> | <img src="docs/screenshots/09-market.png" width="240" alt="Bouquet orders and supplies"> | <img src="docs/screenshots/10-daily.png" width="240" alt="Daily Bloom challenge"> |
+
+| Garden interactions | Trees | Neighbourhood journal |
+| --- | --- | --- |
+| <img src="docs/screenshots/17-garden-region-highlight.png" width="240" alt="An interactive garden area highlighted for restoration"> | <img src="docs/screenshots/13-tree-arboretum.png" width="240" alt="Tree collection in the greenhouse"> | <img src="docs/screenshots/14-lore-journal.png" width="240" alt="Green Neighbors story journal"> |
+
 [![Platform](https://img.shields.io/badge/platform-iPhone%20%C2%B7%20iPad%20%C2%B7%20iOS%2018%2B-000000)](#app-target)
 [![Language](https://img.shields.io/badge/Swift-6-F05138)](#build-and-run)
 [![UI](https://img.shields.io/badge/UI-SwiftUI-0A84FF)](#build-and-run)
@@ -14,10 +30,10 @@ A relay puzzle about restoring a neighbourhood's gardens. You place buds on a 5�
 One level is one bed:
 
 1. Three buds are in your hand, and you can see the next one.
-2. Tap a bud, tap an empty plot. That is one gardening turn.
+2. Drag a bud over an empty plot to preview the next bloom and its relay, then release (or tap the bud, then the plot). That is one gardening turn.
 3. Every bud counts down by one. Buds at zero bloom.
 4. A bloom hands one care point to each neighbouring bud (tulips hand two). Buds that reach zero bloom too, and pass it on.
-5. A bloom stays one turn, then it is collected and the plot is free again.
+5. After its stay, a bloom is harvested and the plot is free again. Marigolds and asters stay two turns; most flowers stay one.
 
 The number you see is the number you get. No hidden multipliers.
 
@@ -33,8 +49,15 @@ The whole game is one question: **take a small relay now, or spend a turn settin
 | **Marigold** | 3 | Its bloom lingers two turns and keeps nearby soil from drying. |
 | **Sunflower** | 4 | Slow, and the market pays well. |
 | **Rose** | 5 | Slower still. Florists ask for it by name. |
+| **Daffodil** | 2 | A quick spring bloom that fits between the daisy and tulip. |
+| **Hydrangea** | 4 | Relays to all eight surrounding plots, including diagonals. |
+| **Aster** | 4 | A two-turn, pollinator-friendly late bloom. |
+| **Peony** | 6 | The slowest flower, but each harvest adds two stems. |
+| **Poppy** | 2 | A quick meadow flower that joins pollinator relays. |
+| **Iris** | 4 | A measured late-game flower with a two-point relay. |
 
 A relay chain is a connected group of flowers that bloom in the same turn. Relays of ×3, ×5, and ×8 earn one, two, and three flowers for your basket.
+At ×4 and above, a Bloom Echo scatters petals across the bed and sends permanent restoration care to the garden's most neglected open area.
 
 ## Tools
 
@@ -42,7 +65,7 @@ Tools never cost a turn.
 
 - **Watering can** soaks a plot and its neighbours. On hot days soil dries a step each turn, and a bud on dry soil waits.
 - **Compost** enriches an empty plot; the next bud there starts a turn closer to bloom.
-- **Fertilizer** makes a bud yield two flowers at harvest.
+- **Fertilizer** adds one extra flower to a bud's harvest.
 - **Mulch** keeps a plot from drying for the rest of the level.
 - **Shears** remove a plant. You lose its flower.
 
@@ -65,12 +88,12 @@ Some beds come with buds already planted. Those are the levels where a relay of 
 
 ## After the level
 
-- **Garden** — place benches, paths, a birdbath, a bee hotel, and the flowers you grew. Goals unlock coins and short scenes with the neighbours.
+- **Garden Estate** — five connected areas replace the single field: Community Courtyard, Wildflower Meadow, Neighbourhood Orchard, Pond Garden, and Greenhouse Yard. Districts emerge from fog at later levels, begin polluted, recover as you work, and add new authored terrain sites over time. The terrain, pond, paths, flowers, fog, and interactive objects now share one camera-controlled world, so zooming cannot detach a placement from its landscape.
 - **Market** — bouquet orders from named neighbours, seed packets, supplies, and decor.
-- **Greenhouse** — the collection. Bloom counts unlock cosmetic varieties, and a journal keeps a careful note about each real flower.
+- **Greenhouse** — a twelve-flower encyclopedia, six-tree arboretum, and persistent Green Neighbors journal. Entries record game rules, scientific name, family, season, home range, garden use, care notes, field facts, bloom count, and cosmetic varieties.
 - **Daily Bloom** — one shared bed a day, seeded from the date. The goal is the longest relay you can manage. Streaks are tracked locally.
 
-Ten short story scenes play at chapter boundaries and garden milestones. No cutscenes, no saving the world.
+Twenty-four short level story scenes, garden milestones, and twelve persistent lore entries build the district without cutscenes or saving the world.
 
 ## App target
 
@@ -100,7 +123,7 @@ xcodebuild test \
   -destination 'platform=iOS Simulator,id=<SIMULATOR_UDID>'
 ```
 
-The app icon is drawn by `scripts/make-icon.py`. Everything else on screen is drawn in SwiftUI at runtime; there are no image assets.
+The app icon is drawn by `scripts/make-icon.py`. Flowers, boards, and the camera-controlled estate terrain are drawn in SwiftUI; other scene backgrounds and key transparent garden decorations live in the asset catalog.
 
 ## Project layout
 
@@ -118,7 +141,7 @@ BudRelay/
 
 ## Why this shape
 
-The puzzle is the whole game, and the garden is the reason to come back. Nothing in the garden makes the puzzle easier; it just makes the flowers mean something. The set is small on purpose: six flowers, one board, rules you can read off the screen.
+The puzzle is the centre of the game, and the estate is the reason to come back. Garden activities and productive items can supply coins, seeds, flowers, and tools, while long puzzle relays restore the estate through Bloom Echo. The relay itself stays readable: twelve distinct flowers, one 5×5 puzzle board, and rules you can read off the screen.
 
 ## License
 

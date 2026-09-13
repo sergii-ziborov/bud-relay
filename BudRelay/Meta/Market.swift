@@ -33,6 +33,16 @@ enum MarketCatalog {
         Order(id: 9, name: "Florist's Favourite", from: "Mara", needs: [.rose: 3, .lavender: 2], coins: 260, decor: nil),
         Order(id: 10, name: "Harvest Crate", from: "Priya", needs: [.sunflower: 4, .marigold: 2], coins: 240, decor: .birdhouse),
         Order(id: 11, name: "Winter Store", from: "Evelyn", needs: [.rose: 2, .tulip: 2, .sunflower: 2, .lavender: 2], coins: 320, decor: nil),
+        Order(id: 12, name: "First Day of Spring", from: "Jonah", needs: [.daffodil: 4, .daisy: 2], coins: 190, decor: nil),
+        Order(id: 13, name: "Blue Table", from: "Priya", needs: [.hydrangea: 3, .lavender: 2], coins: 250, decor: nil),
+        Order(id: 14, name: "Autumn Welcome", from: "Ms. Adeyemi", needs: [.aster: 3, .sunflower: 2], coins: 260, decor: nil),
+        Order(id: 15, name: "Anniversary Peonies", from: "Mara", needs: [.peony: 3, .rose: 2], coins: 380, decor: .gardenArch),
+        Order(id: 16, name: "Seasonal Window", from: "Tomas", needs: [.daffodil: 2, .hydrangea: 2, .aster: 2], coins: 310, decor: nil),
+        Order(id: 17, name: "Botanical Supper", from: "Evelyn", needs: [.peony: 2, .hydrangea: 2, .lavender: 2], coins: 390, decor: nil),
+        Order(id: 18, name: "Meadow Memorial", from: "Tomas", needs: [.poppy: 4, .daisy: 3], coins: 240, decor: nil),
+        Order(id: 19, name: "Blue Bank", from: "Priya", needs: [.iris: 3, .hydrangea: 2], coins: 330, decor: nil),
+        Order(id: 20, name: "Orchard Table", from: "Ms. Adeyemi", needs: [.poppy: 2, .iris: 2, .sunflower: 2], coins: 360, decor: .planterBox),
+        Order(id: 21, name: "Gate Reopening", from: "Mara", needs: [.rose: 2, .peony: 2, .iris: 2], coins: 460, decor: .pergola),
     ]
 
     static func order(_ id: Int) -> Order {
@@ -47,6 +57,12 @@ enum MarketCatalog {
         case .sunflower: 120
         case .marigold: 80
         case .rose: 150
+        case .daffodil: 90
+        case .hydrangea: 140
+        case .aster: 130
+        case .peony: 190
+        case .poppy: 95
+        case .iris: 160
         }
     }
 

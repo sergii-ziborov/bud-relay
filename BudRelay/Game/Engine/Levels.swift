@@ -112,7 +112,13 @@ enum LevelCatalog {
         switch id {
         case 6: .lavender
         case 14: .marigold
+        case 18: .poppy
         case 24: .rose
+        case 32: .daffodil
+        case 40: .hydrangea
+        case 42: .iris
+        case 48: .aster
+        case 54: .peony
         default: nil
         }
     }
@@ -143,7 +149,15 @@ enum LevelCatalog {
     private static let base3: [FlowerKind] = [.daisy, .tulip, .sunflower]
     private static let withLavender: [FlowerKind] = [.daisy, .tulip, .sunflower, .lavender]
     private static let withMarigold: [FlowerKind] = [.daisy, .tulip, .sunflower, .lavender, .marigold]
-    private static let allSix: [FlowerKind] = FlowerKind.allCases
+    private static let allSix: [FlowerKind] = [.daisy, .tulip, .sunflower, .lavender, .marigold, .rose]
+    private static let rooftopLateKinds = withMarigold + [FlowerKind.poppy]
+    private static let withDaffodil = allSix + [FlowerKind.daffodil]
+    private static let lakesideKinds = withDaffodil + [FlowerKind.hydrangea]
+    private static let lakesideIrisKinds = lakesideKinds + [FlowerKind.iris]
+    private static let lateLakesideKinds: [FlowerKind] = [.daisy, .tulip, .sunflower, .lavender, .rose, .daffodil, .hydrangea, .aster]
+    private static let botanicalKinds: [FlowerKind] = [.daisy, .tulip, .sunflower, .lavender, .rose, .daffodil, .hydrangea, .aster]
+    private static let botanicalRareKinds: [FlowerKind] = [.daisy, .tulip, .sunflower, .lavender, .rose, .hydrangea, .aster, .peony]
+    private static let botanicalHeatKinds: [FlowerKind] = [.daisy, .tulip, .sunflower, .lavender, .marigold, .hydrangea, .aster, .peony]
 
     // MARK: - Catalog
 
@@ -202,10 +216,10 @@ enum LevelCatalog {
             make(14, .rooftopGarden, goals: [.chain(4)], turns: 16, kinds: withLavender, blocked: pillars, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]), stars: (6, 10)),
             make(15, .rooftopGarden, goals: [.grow(.marigold, 2), .bloom(8)], turns: 16, kinds: withMarigold, weather: .hotDay, stars: (3, 6), grants: [.water: 2, .mulch: 1]),
             make(16, .rooftopGarden, goals: [.bloom(12)], turns: 17, kinds: withMarigold, blocked: plankRow, stars: (2, 4)),
-            make(17, .rooftopGarden, goals: [.chain(4), .grow(.tulip, 3)], turns: 20, kinds: withMarigold, weather: .hotDay, blocked: corners, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]), stars: (3, 7), grants: [.water: 3]),
+            make(17, .rooftopGarden, goals: [.chain(4), .grow(.tulip, 3)], turns: 22, kinds: withMarigold, weather: .hotDay, blocked: corners, preset: buds(.tulip, turns: 4, at: [Cell(2, 2), Cell(2, 3)]), stars: (3, 7), grants: [.water: 4]),
             make(18, .rooftopGarden, goals: [.emptyPlots(6), .bloom(10)], turns: 16, kinds: withMarigold, blocked: rooftopL, stars: (3, 5)),
-            make(19, .rooftopGarden, goals: [.chain(5)], turns: 18, kinds: withMarigold, blocked: leftWall, preset: buds(.tulip, turns: 4, at: [Cell(1, 2), Cell(3, 2)]) + buds(.sunflower, turns: 5, at: [Cell(2, 2)]), stars: (6, 10)),
-            make(20, .rooftopGarden, goals: [.chain(4), .bloom(12)], turns: 22, kinds: withMarigold, weather: .hotDay, blocked: pillars, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]), stars: (3, 6), grants: [.water: 3, .mulch: 2]),
+            make(19, .rooftopGarden, goals: [.grow(.poppy, 2), .chain(4)], turns: 19, kinds: rooftopLateKinds, blocked: leftWall, preset: buds(.tulip, turns: 4, at: [Cell(1, 2), Cell(3, 2)]) + buds(.sunflower, turns: 5, at: [Cell(2, 2)]), stars: (6, 10)),
+            make(20, .rooftopGarden, goals: [.chain(4), .bloom(12)], turns: 24, kinds: rooftopLateKinds, weather: .hotDay, blocked: pillars, preset: buds(.tulip, turns: 4, at: [Cell(2, 1), Cell(2, 2), Cell(2, 3)]), stars: (3, 6), grants: [.water: 4, .mulch: 2]),
         ]
 
         // Chapter 3 — Schoolyard Garden. Biodiversity and bees.
@@ -226,42 +240,42 @@ enum LevelCatalog {
         levels += [
             make(31, .greenhouseMarket, goals: [.harvest(6)], turns: 14, kinds: allSix, stars: (3, 5)),
             make(32, .greenhouseMarket, goals: [.harvest(8), .grow(.rose, 2)], turns: 16, kinds: allSix, stars: (3, 5), grants: [.fertilizer: 1]),
-            make(33, .greenhouseMarket, goals: [.chain(4), .harvest(8)], turns: 20, kinds: allSix, blocked: path, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]), stars: (3, 6)),
-            make(34, .greenhouseMarket, goals: [.harvest(10)], turns: 18, kinds: allSix, stars: (4, 6), grants: [.fertilizer: 2]),
-            make(35, .greenhouseMarket, goals: [.grow(.rose, 3), .chain(4)], turns: 18, kinds: allSix, preset: buds(.rose, turns: 5, at: [Cell(2, 2)]), stars: (5, 8)),
-            make(36, .greenhouseMarket, goals: [.harvest(10), .pollinator(1)], turns: 18, kinds: allSix, weather: .hotDay, stars: (3, 6), grants: [.water: 3, .mulch: 1]),
-            make(37, .greenhouseMarket, goals: [.chain(5), .harvest(8)], turns: 24, kinds: allSix, blocked: pillars, preset: buds(.tulip, turns: 4, at: edgeMiddles), stars: (4, 8)),
-            make(38, .greenhouseMarket, goals: [.emptyPlots(8), .harvest(10)], turns: 18, kinds: allSix, stars: (4, 6)),
-            make(39, .greenhouseMarket, goals: [.harvest(12), .grow(.sunflower, 3)], turns: 22, kinds: allSix, stars: (3, 5), grants: [.fertilizer: 2, .compost: 2]),
-            make(40, .greenhouseMarket, goals: [.chain(6)], turns: 20, kinds: allSix, preset: buds(.tulip, turns: 4, at: [Cell(1, 2), Cell(3, 2)]) + buds(.rose, turns: 4, at: [Cell(2, 1), Cell(2, 3)]), stars: (7, 11)),
+            make(33, .greenhouseMarket, goals: [.grow(.daffodil, 2), .harvest(8)], turns: 20, kinds: withDaffodil, blocked: path, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]), stars: (3, 6)),
+            make(34, .greenhouseMarket, goals: [.harvest(10)], turns: 18, kinds: withDaffodil, stars: (4, 6), grants: [.fertilizer: 2]),
+            make(35, .greenhouseMarket, goals: [.grow(.rose, 3), .chain(4)], turns: 18, kinds: withDaffodil, preset: buds(.rose, turns: 5, at: [Cell(2, 2)]), stars: (5, 8)),
+            make(36, .greenhouseMarket, goals: [.harvest(10), .pollinator(1)], turns: 18, kinds: withDaffodil, weather: .hotDay, stars: (3, 6), grants: [.water: 3, .mulch: 1]),
+            make(37, .greenhouseMarket, goals: [.chain(5), .harvest(8)], turns: 24, kinds: withDaffodil, blocked: pillars, preset: buds(.tulip, turns: 4, at: edgeMiddles), stars: (4, 8)),
+            make(38, .greenhouseMarket, goals: [.emptyPlots(8), .harvest(10)], turns: 18, kinds: withDaffodil, stars: (4, 6)),
+            make(39, .greenhouseMarket, goals: [.harvest(12), .grow(.sunflower, 3)], turns: 22, kinds: withDaffodil, stars: (3, 5), grants: [.fertilizer: 2, .compost: 2]),
+            make(40, .greenhouseMarket, goals: [.chain(6)], turns: 20, kinds: withDaffodil, preset: buds(.tulip, turns: 4, at: [Cell(1, 2), Cell(3, 2)]) + buds(.rose, turns: 4, at: [Cell(2, 1), Cell(2, 3)]), stars: (7, 11)),
         ]
 
         // Chapter 5 — Lakeside Park. Weather swings and pre-planted beds.
         levels += [
-            make(41, .lakesidePark, goals: [.bloom(12)], turns: 16, kinds: allSix, weather: .rain, blocked: pondCells, stars: (2, 4)),
-            make(42, .lakesidePark, goals: [.chain(4), .bloom(10)], turns: 16, kinds: allSix, weather: .hotDay, dry: topWall, stars: (3, 6), grants: [.water: 3]),
-            make(43, .lakesidePark, goals: [.chain(5)], turns: 16, kinds: allSix, weather: .rain, preset: buds(.tulip, turns: 4, at: [Cell(1, 1), Cell(1, 3)]) + buds(.rose, turns: 5, at: [Cell(3, 2)]), stars: (5, 9)),
-            make(44, .lakesidePark, goals: [.pollinator(2), .harvest(8)], turns: 18, kinds: allSix, blocked: terrace, stars: (4, 7)),
-            make(45, .lakesidePark, goals: [.bloom(14), .emptyPlots(6)], turns: 18, kinds: allSix, weather: .hotDay, stars: (2, 4), grants: [.water: 4, .mulch: 2]),
-            make(46, .lakesidePark, goals: [.chain(6)], turns: 20, kinds: allSix, weather: .rain, preset: buds(.tulip, turns: 5, at: [Cell(1, 2), Cell(3, 2)]) + buds(.sunflower, turns: 5, at: [Cell(2, 1), Cell(2, 3)]), stars: (7, 11)),
-            make(47, .lakesidePark, goals: [.grow(.rose, 3), .grow(.lavender, 3), .chain(4)], turns: 22, kinds: allSix, blocked: pondCells, stars: (3, 6)),
-            make(48, .lakesidePark, goals: [.chain(4), .pollinator(2)], turns: 24, kinds: allSix, weather: .hotDay, blocked: corners, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]), stars: (4, 8), grants: [.water: 5]),
-            make(49, .lakesidePark, goals: [.bloom(18)], turns: 22, kinds: allSix, weather: .rain, stars: (2, 4)),
-            make(50, .lakesidePark, goals: [.chain(6), .harvest(10)], turns: 22, kinds: allSix, preset: buds(.tulip, turns: 5, at: pillars), stars: (4, 8)),
+            make(41, .lakesidePark, goals: [.grow(.hydrangea, 2), .bloom(12)], turns: 18, kinds: lakesideKinds, weather: .rain, blocked: pondCells, stars: (2, 4)),
+            make(42, .lakesidePark, goals: [.chain(4), .bloom(10)], turns: 18, kinds: lakesideKinds, weather: .hotDay, dry: topWall, stars: (3, 6), grants: [.water: 3]),
+            make(43, .lakesidePark, goals: [.grow(.iris, 2), .chain(4)], turns: 20, kinds: lakesideIrisKinds, weather: .rain, preset: buds(.tulip, turns: 4, at: [Cell(1, 1), Cell(1, 3)]) + buds(.rose, turns: 5, at: [Cell(3, 2)]), stars: (5, 9)),
+            make(44, .lakesidePark, goals: [.pollinator(2), .harvest(8)], turns: 20, kinds: lakesideKinds, blocked: terrace, stars: (4, 7)),
+            make(45, .lakesidePark, goals: [.bloom(14), .emptyPlots(6)], turns: 20, kinds: lakesideKinds, weather: .hotDay, stars: (2, 4), grants: [.water: 4, .mulch: 2]),
+            make(46, .lakesidePark, goals: [.chain(6)], turns: 22, kinds: lakesideKinds, weather: .rain, preset: buds(.tulip, turns: 5, at: [Cell(1, 2), Cell(3, 2)]) + buds(.sunflower, turns: 5, at: [Cell(2, 1), Cell(2, 3)]), stars: (7, 11)),
+            make(47, .lakesidePark, goals: [.grow(.rose, 3), .grow(.lavender, 3), .chain(4)], turns: 24, kinds: lakesideKinds, blocked: pondCells, stars: (3, 6)),
+            make(48, .lakesidePark, goals: [.chain(4), .pollinator(2)], turns: 28, kinds: lakesideKinds, weather: .hotDay, blocked: corners, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]), stars: (4, 8), grants: [.water: 7]),
+            make(49, .lakesidePark, goals: [.grow(.aster, 3), .bloom(16)], turns: 24, kinds: lateLakesideKinds, weather: .rain, stars: (2, 4)),
+            make(50, .lakesidePark, goals: [.chain(6), .harvest(10)], turns: 24, kinds: lateLakesideKinds, preset: buds(.tulip, turns: 5, at: pillars), stars: (4, 8)),
         ]
 
         // Chapter 6 — Old Botanical Garden. Everything at once.
         levels += [
-            make(51, .botanicalGarden, goals: [.chain(5), .bloom(12)], turns: 20, kinds: allSix, blocked: pillars, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]) + buds(.sunflower, turns: 4, at: [Cell(0, 2), Cell(4, 2)]), stars: (3, 6)),
-            make(52, .botanicalGarden, goals: [.chain(6)], turns: 20, kinds: allSix, blocked: centerStone, preset: buds(.tulip, turns: 5, at: [Cell(1, 2), Cell(3, 2), Cell(2, 1), Cell(2, 3)]), stars: (7, 11)),
-            make(53, .botanicalGarden, goals: [.harvest(10), .pollinator(2)], turns: 24, kinds: allSix, weather: .hotDay, stars: (3, 6), grants: [.water: 4, .mulch: 2]),
-            make(54, .botanicalGarden, goals: [.grow(.rose, 3), .chain(4)], turns: 22, kinds: allSix, stars: (4, 7), grants: [.compost: 3]),
-            make(55, .botanicalGarden, goals: [.chain(5), .emptyPlots(8)], turns: 22, kinds: allSix, blocked: corners, preset: buds(.tulip, turns: 4, at: [Cell(2, 1), Cell(2, 3)]), stars: (4, 8)),
-            make(56, .botanicalGarden, goals: [.bloom(20)], turns: 24, kinds: allSix, weather: .rain, blocked: path, stars: (2, 4)),
-            make(57, .botanicalGarden, goals: [.chain(7)], turns: 22, kinds: allSix, preset: buds(.tulip, turns: 5, at: pillars) + buds(.sunflower, turns: 5, at: [Cell(2, 2)]), stars: (7, 12)),
-            make(58, .botanicalGarden, goals: [.pollinator(2), .harvest(8)], turns: 26, kinds: allSix, weather: .hotDay, blocked: pillars, stars: (4, 7), grants: [.water: 4, .mulch: 2]),
-            make(59, .botanicalGarden, goals: [.chain(5), .grow(.sunflower, 3)], turns: 24, kinds: allSix, blocked: terrace, preset: buds(.tulip, turns: 4, at: [Cell(2, 1), Cell(2, 3)]), stars: (4, 8)),
-            make(60, .botanicalGarden, goals: [.chain(8)], turns: 24, kinds: allSix, preset: buds(.tulip, turns: 5, at: pillars) + buds(.sunflower, turns: 5, at: [Cell(0, 2), Cell(4, 2)]), stars: (7, 12), grants: [.compost: 2]),
+            make(51, .botanicalGarden, goals: [.chain(5), .bloom(12)], turns: 22, kinds: allSix, blocked: pillars, preset: buds(.tulip, turns: 4, at: [Cell(2, 2)]) + buds(.sunflower, turns: 4, at: [Cell(0, 2), Cell(4, 2)]), stars: (3, 6)),
+            make(52, .botanicalGarden, goals: [.chain(6)], turns: 22, kinds: botanicalKinds, blocked: centerStone, preset: buds(.tulip, turns: 5, at: [Cell(1, 2), Cell(3, 2), Cell(2, 1), Cell(2, 3)]), stars: (7, 11)),
+            make(53, .botanicalGarden, goals: [.harvest(10), .pollinator(2)], turns: 26, kinds: botanicalKinds, weather: .hotDay, stars: (3, 6), grants: [.water: 4, .mulch: 2]),
+            make(54, .botanicalGarden, goals: [.grow(.rose, 3), .chain(4)], turns: 24, kinds: botanicalKinds, stars: (4, 7), grants: [.compost: 3]),
+            make(55, .botanicalGarden, goals: [.grow(.peony, 2), .chain(5)], turns: 26, kinds: botanicalRareKinds, blocked: corners, preset: buds(.tulip, turns: 4, at: [Cell(2, 1), Cell(2, 3)]), stars: (4, 8)),
+            make(56, .botanicalGarden, goals: [.bloom(20)], turns: 26, kinds: botanicalRareKinds, weather: .rain, blocked: path, stars: (2, 4)),
+            make(57, .botanicalGarden, goals: [.chain(7)], turns: 24, kinds: botanicalRareKinds, preset: buds(.tulip, turns: 5, at: pillars) + buds(.sunflower, turns: 5, at: [Cell(2, 2)]), stars: (7, 12)),
+            make(58, .botanicalGarden, goals: [.pollinator(2), .harvest(8)], turns: 28, kinds: botanicalHeatKinds, weather: .hotDay, blocked: pillars, stars: (4, 7), grants: [.water: 4, .mulch: 2]),
+            make(59, .botanicalGarden, goals: [.chain(5), .grow(.sunflower, 3)], turns: 26, kinds: botanicalRareKinds, blocked: terrace, preset: buds(.tulip, turns: 4, at: [Cell(2, 1), Cell(2, 3)]), stars: (4, 8)),
+            make(60, .botanicalGarden, goals: [.chain(8)], turns: 26, kinds: botanicalRareKinds, preset: buds(.tulip, turns: 5, at: pillars) + buds(.sunflower, turns: 5, at: [Cell(0, 2), Cell(4, 2)]), stars: (7, 12), grants: [.compost: 2]),
         ]
 
         return levels

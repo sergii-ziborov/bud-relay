@@ -13,10 +13,32 @@ struct PlayView: View {
     }
 }
 
+private struct ActiveFlowerDrag: Equatable {
+    let cardIndex: Int
+    let kind: FlowerKind
+    let sourceLocation: CGPoint
+    var location: CGPoint
+    var landed = false
+}
+
+private struct BoardFramePreferenceKey: PreferenceKey {
+    static let defaultValue: CGRect = .zero
+
+    static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
+        let next = nextValue()
+        if !next.isEmpty { value = next }
+    }
+}
+
 private struct PlayContent: View {
     @Environment(AppModel.self) private var model
     @Bindable var session: PlaySession
     @Binding var paused: Bool
+    @State private var activeDrag: ActiveFlowerDrag?
+    @State private var dragTarget: Cell?
+    @State private var boardFrame: CGRect = .zero
+
+    private let dragLift: CGFloat = 48
 
     var body: some View {
         ZStack {
@@ -24,7 +46,12 @@ private struct PlayContent: View {
                 topBar
                 GoalsPanel(session: session)
                 board
-                HandView(session: session)
+                HandView(
+                    session: session,
+                    draggingCard: activeDrag?.cardIndex,
+                    onDragChanged: dragChanged,
+                    onDragEnded: dragEnded
+                )
                 ToolsBar(session: session)
             }
             .padding(.horizontal, 14)
@@ -34,11 +61,28 @@ private struct PlayContent: View {
             .disabled(paused)
             .blur(radius: paused ? 3 : 0)
 
+            if let activeDrag {
+                DraggedBudView(
+                    kind: activeDrag.kind,
+                    variant: model.progress.variant(for: activeDrag.kind),
+                    growTurns: activeDrag.kind.growTurns,
+                    validTarget: dragTarget != nil,
+                    landed: activeDrag.landed
+                )
+                .position(x: activeDrag.location.x, y: activeDrag.location.y - dragLift)
+                .allowsHitTesting(false)
+                .zIndex(20)
+                .transition(.scale(scale: 0.65).combined(with: .opacity))
+            }
+
             if paused {
                 PauseMenu(paused: $paused)
                     .transition(.opacity)
+                    .zIndex(30)
             }
         }
+        .coordinateSpace(name: "play-area")
+        .onPreferenceChange(BoardFramePreferenceKey.self) { boardFrame = $0 }
         .animation(.easeInOut(duration: 0.2), value: paused)
     }
 
@@ -48,22 +92,14 @@ private struct PlayContent: View {
                 paused = true
             }
             Spacer(minLength: 0)
-            VStack(spacing: 1) {
+            VStack(spacing: -2) {
+                LogoView(subtitle: nil, scale: 0.4)
                 Text(session.isDaily ? "Daily Bloom" : session.level.title)
-                    .font(Typography.heading)
-                    .foregroundStyle(Palette.cream)
-                    .shadow(color: Palette.woodDark, radius: 0, y: 1)
-                Text(session.isDaily ? DailyBloom.title(for: DailyBloom.dayNumber()) : session.level.chapter.name)
                     .font(Typography.small)
-                    .foregroundStyle(Palette.cream.opacity(0.85))
-            }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 14)
-            .background {
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(LinearGradient(colors: [Palette.woodLight, Palette.wood], startPoint: .top, endPoint: .bottom))
-                    .overlay { RoundedRectangle(cornerRadius: 12, style: .continuous).strokeBorder(Palette.woodDark, lineWidth: 2) }
-                    .shadow(color: .black.opacity(0.25), radius: 3, y: 3)
+                    .foregroundStyle(Palette.ink)
+                    .padding(.vertical, 3)
+                    .padding(.horizontal, 9)
+                    .background(Capsule().fill(Palette.paper.opacity(0.95)))
             }
             Spacer(minLength: 0)
             ResourcePill(symbol: "clock.fill", text: "\(session.turnsLeft)", tint: session.turnsLeft <= 3 ? Palette.coral : Palette.cream, accessibilityID: "turns-left")
@@ -94,7 +130,8 @@ private struct PlayContent: View {
     }
 
     private var board: some View {
-        ZStack {
+        let forecast = dragForecast
+        return ZStack {
             BoardView(
                 board: session.displayBoard,
                 variants: model.progress.variants,
@@ -103,20 +140,58 @@ private struct PlayContent: View {
                 glowing: session.justBloomed,
                 thirsty: thirstyCells,
                 ghost: session.selectedCard.flatMap { session.hand.indices.contains($0) ? session.hand[$0] : nil },
+                dragTarget: dragTarget,
                 pulses: session.activeWave?.pulses ?? [],
-                interactive: true
-            ) { cell in
-                session.tap(cell: cell)
+                previewBlooms: Set(forecast?.bloomedCells ?? []),
+                previewPulses: forecast?.waves.flatMap(\.pulses) ?? [],
+                interactive: true,
+                onTap: { cell in session.tap(cell: cell) }
+            )
+            .background {
+                GeometryReader { proxy in
+                    Color.clear.preference(
+                        key: BoardFramePreferenceKey.self,
+                        value: proxy.frame(in: .named("play-area"))
+                    )
+                }
             }
             .overlay(alignment: .top) {
                 harvestFloaters
+            }
+            if let forecast, forecast.chain >= 2 {
+                Text(forecast.chain >= 4 ? "BLOOM ECHO  ·  ×\(forecast.chain)" : "POSSIBLE RELAY  ·  ×\(forecast.chain)")
+                    .font(.system(size: 11, weight: .black, design: .rounded))
+                    .tracking(0.6)
+                    .foregroundStyle(Palette.ink)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Capsule().fill(Palette.paper.opacity(0.96)))
+                    .overlay { Capsule().strokeBorder(forecast.chain >= 4 ? Palette.gold : Palette.leafLight, lineWidth: 2) }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .padding(.top, 7)
+                    .allowsHitTesting(false)
+                    .transition(.opacity)
             }
             if let chain = session.chainBanner {
                 ChainBanner(chain: chain)
                     .transition(.scale.combined(with: .opacity))
             }
+            if let echo = session.echoCelebration {
+                BloomEchoBurst(cells: session.echoCells, amount: echo, startedAt: session.echoStartedAt)
+                    .transition(.opacity)
+            }
         }
         .animation(.spring(duration: 0.35, bounce: 0.4), value: session.chainBanner)
+    }
+
+    /// The actual turn resolver previews the next bloom while a card hovers.
+    /// It cannot disagree with the move that will be committed on release.
+    private var dragForecast: TurnReport? {
+        guard session.phase == .planning, let drag = activeDrag, let target = dragTarget,
+              session.hand.indices.contains(drag.cardIndex), session.board.canPlant(at: target) else { return nil }
+        var board = session.board
+        board.plant(drag.kind, at: target)
+        return Relay.resolveTurn(board: board, weather: session.level.weather)
     }
 
     private var highlightedCells: Set<Cell> {
@@ -126,6 +201,62 @@ private struct PlayContent: View {
     private var thirstyCells: Set<Cell> {
         guard session.level.weather == .hotDay || session.board.plots.contains(where: { $0.moisture == .dry }) else { return [] }
         return Set(session.board.budCells.filter { session.board[$0].moisture == .dry })
+    }
+
+    private func dragChanged(card index: Int, kind: FlowerKind, value: DragGesture.Value) {
+        guard session.phase == .planning else { return }
+        if activeDrag == nil {
+            guard session.beginCardDrag(index, expectedKind: kind) else { return }
+            activeDrag = ActiveFlowerDrag(
+                cardIndex: index,
+                kind: kind,
+                sourceLocation: value.startLocation,
+                location: value.location
+            )
+        }
+        guard var drag = activeDrag, drag.cardIndex == index, drag.kind == kind else { return }
+        drag.location = value.location
+        activeDrag = drag
+
+        let nextTarget = validTarget(at: value.location)
+        if nextTarget != dragTarget {
+            if nextTarget != nil, session.hapticsEnabled { Feedback.hover() }
+            withAnimation(.easeOut(duration: 0.10)) {
+                dragTarget = nextTarget
+            }
+        }
+    }
+
+    private func dragEnded(card index: Int, kind: FlowerKind, value: DragGesture.Value) {
+        guard var drag = activeDrag, drag.cardIndex == index, drag.kind == kind else { return }
+        let target = validTarget(at: value.location)
+        if let target, session.drop(FlowerDragPayload(cardIndex: index, kind: kind), at: target) {
+            let center = BoardLayout.center(of: target, in: boardFrame)
+            drag.location = CGPoint(x: center.x, y: center.y + dragLift)
+            drag.landed = true
+            withAnimation(.easeOut(duration: 0.12)) {
+                activeDrag = drag
+                dragTarget = nil
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                withAnimation(.easeOut(duration: 0.10)) { activeDrag = nil }
+            }
+        } else {
+            session.cancelCardDrag()
+            drag.location = drag.sourceLocation
+            withAnimation(.spring(duration: 0.24, bounce: 0.18)) {
+                activeDrag = drag
+                dragTarget = nil
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.24) {
+                withAnimation(.easeOut(duration: 0.08)) { activeDrag = nil }
+            }
+        }
+    }
+
+    private func validTarget(at point: CGPoint) -> Cell? {
+        guard let cell = BoardLayout.cell(at: point, in: boardFrame), session.board.canPlant(at: cell) else { return nil }
+        return cell
     }
 
     @ViewBuilder
@@ -150,6 +281,41 @@ private struct PlayContent: View {
     }
 }
 
+private struct DraggedBudView: View {
+    let kind: FlowerKind
+    let variant: Int
+    let growTurns: Int
+    let validTarget: Bool
+    let landed: Bool
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(
+                    RadialGradient(
+                        colors: [
+                            (validTarget ? Palette.glow : Palette.paper).opacity(0.92),
+                            (validTarget ? Palette.leafLight : Palette.paperDark).opacity(0.34),
+                            .clear
+                        ],
+                        center: .center,
+                        startRadius: 6,
+                        endRadius: 52
+                    )
+                )
+            FlowerView(kind: kind, stage: .bud, variant: variant)
+                .frame(width: 72, height: 72)
+                .shadow(color: .black.opacity(0.34), radius: 5, y: 6)
+            TimerBadge(value: growTurns, size: 24)
+                .offset(x: 30, y: 25)
+        }
+        .frame(width: 104, height: 104)
+        .scaleEffect(landed ? 0.66 : (validTarget ? 1.08 : 1))
+        .opacity(landed ? 0.15 : 1)
+        .animation(.spring(duration: 0.16, bounce: 0.28), value: validTarget)
+    }
+}
+
 private struct ChainBanner: View {
     let chain: Int
 
@@ -165,6 +331,75 @@ private struct ChainBanner: View {
         .shadow(color: Palette.glow.opacity(0.9), radius: 14)
         .rotationEffect(.degrees(-6))
         .allowsHitTesting(false)
+    }
+}
+
+/// A long relay briefly turns the whole bed into a living constellation. The
+/// petals originate at the flowers that actually bloomed, and its earned care
+/// is carried into the permanent garden at the end of the level.
+private struct BloomEchoBurst: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    let cells: [Cell]
+    let amount: Int
+    let startedAt: Date
+
+    var body: some View {
+        TimelineView(.animation(minimumInterval: reduceMotion ? 1 : 1 / 30, paused: reduceMotion)) { timeline in
+            let progress = reduceMotion ? 0.55 : min(1, max(0, timeline.date.timeIntervalSince(startedAt) / 1.05))
+            ZStack {
+                Canvas { context, size in
+                    let boardRect = CGRect(origin: .zero, size: size)
+                    for (flowerIndex, cell) in cells.enumerated() {
+                        let origin = BoardLayout.center(of: cell, in: boardRect)
+                        let radius = CGFloat(9 + progress * 38)
+                        let ring = CGRect(x: origin.x - radius, y: origin.y - radius,
+                                          width: radius * 2, height: radius * 2)
+                        context.stroke(Path(ellipseIn: ring), with: .color(Palette.glow.opacity(0.70 * (1 - progress))), lineWidth: 3)
+                        for particle in 0..<12 {
+                            let angle = Double(particle) * .pi / 6 + Double(flowerIndex) * 0.53
+                            let flight = CGFloat(8 + particle % 4 * 5) + CGFloat(progress) * CGFloat(32 + particle % 5 * 8)
+                            let x = origin.x + cos(angle) * flight
+                            let y = origin.y + sin(angle) * flight * 0.72 - CGFloat(progress) * 14
+                            let size = CGFloat(3 + particle % 3)
+                            let petal = Path(ellipseIn: CGRect(x: x - size / 2, y: y - size / 2,
+                                                                width: size, height: size * 1.7))
+                            let tint: Color = switch particle % 4 {
+                            case 0: Palette.glow
+                            case 1: Palette.blush
+                            case 2: Palette.leafLight
+                            default: Color.white
+                            }
+                            context.fill(petal, with: .color(tint.opacity(0.92 * (1 - progress * 0.75))))
+                        }
+                    }
+                }
+                .blendMode(.plusLighter)
+
+                VStack(spacing: 2) {
+                    Text("THE GARDEN HEARD YOU")
+                        .font(.system(size: 11, weight: .black, design: .rounded))
+                        .tracking(1.5)
+                    HStack(spacing: 7) {
+                        Image(systemName: "sparkles")
+                            .foregroundStyle(Palette.gold)
+                        Text("Bloom Echo +\(amount)")
+                            .font(Typography.display(28))
+                        Image(systemName: "sparkles")
+                            .foregroundStyle(Palette.gold)
+                    }
+                }
+                .foregroundStyle(Palette.ink)
+                .padding(.horizontal, 15)
+                .padding(.vertical, 10)
+                .background(RoundedRectangle(cornerRadius: 14).fill(Palette.paper.opacity(0.95)))
+                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(Palette.gold, lineWidth: 2) }
+                .shadow(color: Palette.glow.opacity(0.75), radius: 22)
+                .scaleEffect(0.9 + 0.1 * min(progress * 4, 1))
+                .opacity(progress > 0.75 ? 1 - (progress - 0.75) * 2.5 : 1)
+            }
+        }
+        .allowsHitTesting(false)
+        .accessibilityLabel("Bloom Echo earned, plus \(amount) garden care")
     }
 }
 
@@ -232,6 +467,9 @@ private struct GoalsPanel: View {
 private struct HandView: View {
     @Environment(AppModel.self) private var model
     @Bindable var session: PlaySession
+    var draggingCard: Int?
+    let onDragChanged: (Int, FlowerKind, DragGesture.Value) -> Void
+    let onDragEnded: (Int, FlowerKind, DragGesture.Value) -> Void
 
     var body: some View {
         VStack(spacing: 6) {
@@ -244,8 +482,15 @@ private struct HandView: View {
                     }
                     .buttonStyle(PressStyle())
                     .disabled(session.phase != .planning)
+                    .opacity(draggingCard == index ? 0.34 : 1)
+                    .scaleEffect(draggingCard == index ? 0.92 : 1)
+                    .simultaneousGesture(
+                        DragGesture(minimumDistance: 5, coordinateSpace: .named("play-area"))
+                            .onChanged { onDragChanged(index, kind, $0) }
+                            .onEnded { onDragEnded(index, kind, $0) }
+                    )
                     .accessibilityIdentifier("card-\(index)")
-                    .accessibilityLabel("\(kind.name), \(kind.growTurns) turns")
+                    .accessibilityLabel("\(kind.name), \(kind.growTurns) turns. Drag to an empty plot, or tap then tap a plot.")
                 }
                 nextCard
             }
@@ -444,7 +689,7 @@ private struct ToolsBar: View {
         if session.phase == .animating {
             return "Blooming beds create care momentum for nearby plants."
         }
-        return "Pick a bud below, or tend the beds to let a turn pass."
+        return "Drag a bud to a plot, or tap the bud and plot. Tend to let a turn pass."
     }
 }
 

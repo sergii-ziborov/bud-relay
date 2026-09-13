@@ -62,6 +62,7 @@ struct RootView: View {
         case .market: .market
         case .garden: .garden
         case .daily: .daily
+        case .map: .map
         default: .home
         }
     }

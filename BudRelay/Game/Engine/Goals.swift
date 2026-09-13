@@ -40,7 +40,7 @@ enum Goal: Hashable, Sendable, Codable {
         switch self {
         case let .bloom(n): "Bloom \(n) flowers"
         case let .chain(n): "Make a relay ×\(n)"
-        case let .grow(kind, n): "Bloom \(n) \(kind.name.lowercased())\(n == 1 ? "" : "s")"
+        case let .grow(kind, n): "Bloom \(n) \((n == 1 ? kind.name : kind.pluralName).lowercased())"
         case let .pollinator(n): "Bring \(n) bee visit\(n == 1 ? "" : "s")"
         case let .harvest(n): "Collect \(n) flowers"
         case let .emptyPlots(n): "Finish with \(n) empty plots"
@@ -74,6 +74,8 @@ struct LevelStats: Hashable, Sendable, Codable {
     var harvestedByKind: [FlowerKind: Int] = [:]
     var seedsEarned: [FlowerKind: Int] = [:]
     var flowersEarned: [FlowerKind: Int] = [:]
+    /// Long cascades send a lasting pulse of care into the estate.
+    var gardenEcho = 0
     var turnsPlayed = 0
 
     mutating func record(_ report: TurnReport) {
@@ -85,6 +87,9 @@ struct LevelStats: Hashable, Sendable, Codable {
         if report.chain > 0 {
             chains.append(report.chain)
             longestChain = max(longestChain, report.chain)
+            if report.chain >= 4 {
+                gardenEcho += (report.chain - 2) / 2
+            }
             for (kind, count) in Rewards.flowers(forChain: report.chain, kinds: report.bloomedKinds) {
                 flowersEarned[kind, default: 0] += count
             }

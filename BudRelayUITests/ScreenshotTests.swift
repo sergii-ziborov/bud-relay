@@ -1,6 +1,7 @@
 import XCTest
 
 /// Walks every screen and keeps PNG attachments; the repo's docs/screenshots are exported from the xcresult.
+@MainActor
 final class ScreenshotTests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = true
@@ -15,6 +16,11 @@ final class ScreenshotTests: XCTestCase {
         shoot("00-welcome")
         for _ in 0..<6 where app.buttons["story-next"].exists {
             app.buttons["story-next"].tap()
+            usleep(300_000)
+        }
+        XCTAssertTrue(app.buttons["howto-next"].waitForExistence(timeout: 8))
+        for _ in 0..<3 {
+            app.buttons["howto-next"].tap()
             usleep(300_000)
         }
         XCTAssertTrue(app.buttons["play-button"].waitForExistence(timeout: 8))
@@ -67,8 +73,9 @@ final class ScreenshotTests: XCTestCase {
             button.tap()
             sleep(1)
             shoot(name)
+            app.buttons["back-button"].tap()
+            XCTAssertTrue(app.buttons["play-button"].waitForExistence(timeout: 8))
         }
-        app.buttons["nav-home"].tap()
         XCTAssertTrue(app.buttons["howto-button"].waitForExistence(timeout: 8))
         app.buttons["howto-button"].tap()
         sleep(1)
@@ -76,6 +83,66 @@ final class ScreenshotTests: XCTestCase {
         app.buttons["howto-next"].tap()
         sleep(1)
         shoot("12-howto-relay")
+    }
+
+    func testExpandedCollectionTabs() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["ui-testing", "demo-progress"]
+        app.launch()
+        XCTAssertTrue(app.buttons["nav-greenhouse"].waitForExistence(timeout: 8))
+        app.buttons["nav-greenhouse"].tap()
+
+        let trees = app.buttons["greenhouse-tab-trees"]
+        XCTAssertTrue(trees.waitForExistence(timeout: 8))
+        trees.tap()
+        sleep(1)
+        shoot("13-tree-arboretum")
+        XCTAssertTrue(app.buttons["tree-collection-apple"].exists)
+
+        let journal = app.buttons["greenhouse-tab-journal"]
+        XCTAssertTrue(journal.exists)
+        journal.tap()
+        sleep(1)
+        shoot("14-lore-journal")
+        XCTAssertTrue(app.staticTexts["Green Neighbors Journal"].exists)
+    }
+
+    func testGardenExpansionAndPlacementTargets() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["ui-testing", "demo-progress"]
+        app.launch()
+        XCTAssertTrue(app.buttons["nav-garden"].waitForExistence(timeout: 8))
+        app.buttons["nav-garden"].tap()
+        XCTAssertTrue(app.buttons["garden-goals"].waitForExistence(timeout: 8))
+        XCTAssertTrue(app.buttons["garden-zoom-in"].exists)
+        XCTAssertTrue(app.buttons["garden-activity-tidyLeaves"].exists)
+        sleep(1)
+        shoot("15-garden-estate")
+
+        let pathStone = app.buttons["inventory-pathStone"]
+        XCTAssertTrue(pathStone.exists)
+        pathStone.tap()
+        sleep(1)
+        shoot("16-garden-path-targets")
+
+        let pathTarget = app.buttons["garden-5-0"]
+        XCTAssertTrue(pathTarget.exists)
+        pathTarget.tap()
+        expectation(for: NSPredicate(format: "label == 'Path Stone'"), evaluatedWith: pathTarget)
+        waitForExpectations(timeout: 3)
+
+        let courtyard = app.buttons["garden-region-courtyard"]
+        XCTAssertTrue(courtyard.exists)
+        courtyard.tap()
+        XCTAssertTrue(app.buttons["garden-tend-region"].waitForExistence(timeout: 3))
+        shoot("17-garden-region-highlight")
+
+        let bench = app.buttons["garden-5-3"]
+        XCTAssertTrue(bench.exists)
+        bench.tap()
+        XCTAssertTrue(app.buttons["garden-collect-item"].waitForExistence(timeout: 3))
+        shoot("18-garden-object-action")
+        app.buttons["garden-collect-item"].tap()
     }
 
     /// Uses a hint when one is left, otherwise drops the first card on the first empty plot.

@@ -9,6 +9,7 @@ struct PlotView: View {
     var glowing = false
     var thirsty = false
     var ghost: FlowerKind? = nil
+    var dropFocused = false
 
     var body: some View {
         GeometryReader { proxy in
@@ -50,8 +51,9 @@ struct PlotView: View {
                         }
                     } else if let ghost {
                         FlowerView(kind: ghost, stage: .bud, variant: variant)
-                            .frame(width: side * 0.7, height: side * 0.7)
-                            .opacity(0.35)
+                            .frame(width: side * 0.74, height: side * 0.74)
+                            .opacity(dropFocused ? 0.78 : 0.30)
+                            .scaleEffect(dropFocused ? 1.08 : 1)
                     }
                     if thirsty {
                         Image(systemName: "drop.fill")
@@ -67,6 +69,17 @@ struct PlotView: View {
                     Circle()
                         .strokeBorder(Palette.leafLight, style: StrokeStyle(lineWidth: side * 0.05, dash: [side * 0.12, side * 0.08]))
                         .padding(side * 0.03)
+                }
+                if dropFocused {
+                    Circle()
+                        .fill(Palette.leafLight.opacity(0.16))
+                        .overlay {
+                            Circle()
+                                .strokeBorder(Palette.glow, lineWidth: side * 0.075)
+                                .shadow(color: Palette.glow.opacity(0.9), radius: side * 0.10)
+                        }
+                        .padding(side * 0.015)
+                        .scaleEffect(1.07)
                 }
                 if hinted {
                     Circle()
@@ -84,6 +97,7 @@ struct PlotView: View {
             .frame(width: proxy.size.width, height: proxy.size.height)
         }
         .aspectRatio(1, contentMode: .fit)
+        .animation(.spring(duration: 0.16, bounce: 0.25), value: dropFocused)
     }
 
     private func soil(side: CGFloat) -> some View {

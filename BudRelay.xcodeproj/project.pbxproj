@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		035135250DA4D5EE9E4513B5 /* GardenBackdrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB92677522894C9B0C9032CE /* GardenBackdrop.swift */; };
+		038A6815FFD5CAAB60C20DEA /* Trees.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC27C1FD96BF6B9E6F296240 /* Trees.swift */; };
 		03F09692D866C6E3129FD869 /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B7341275B0B7540D40EF3 /* Goals.swift */; };
 		0622C8FA211485A2194B8C7E /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D7D1877955178C708B4CF /* ProgressState.swift */; };
 		072468001119FA2592D4BBE4 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1B382545339AFBF0512F4B /* Levels.swift */; };
@@ -114,6 +115,7 @@
 		ED06B27A45ABC0FE7B7591E3 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F64D7D1877955178C708B4CF /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
 		F83EF7E08502033CA239E6B0 /* BudRelayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudRelayApp.swift; sourceTree = "<group>"; };
+		FC27C1FD96BF6B9E6F296240 /* Trees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trees.swift; sourceTree = "<group>"; };
 		FCAB6D4AB6F6FF3FB5B5A955 /* GardenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenView.swift; sourceTree = "<group>"; };
 		FCBBBB71EC96EB27CD401D73 /* DailyBloom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBloom.swift; sourceTree = "<group>"; };
 		FCF4B20174CD78F2718FCE79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				9594BEFB457946A05DF18BD4 /* Garden.swift */,
 				47F22627A1777D9A69E5F994 /* Market.swift */,
 				B36194C78A2EF83D62B7EDBB /* Story.swift */,
+				FC27C1FD96BF6B9E6F296240 /* Trees.swift */,
 			);
 			path = Meta;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				18DF413BF7A39E90368F7460 /* SettingsView.swift in Sources */,
 				A5967BCE2504E0FAE7126D4E /* Stores.swift in Sources */,
 				66DF48089EA634BA062716FF /* Story.swift in Sources */,
+				038A6815FFD5CAAB60C20DEA /* Trees.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

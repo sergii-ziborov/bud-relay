@@ -37,8 +37,13 @@ struct TurnReport: Hashable, Sendable {
 
 enum Relay {
     /// Flowers only relay to neighbours, so a relay chain is a connected group of blooms.
-    static func largestConnectedGroup(_ cells: [Cell]) -> Int {
+    static func largestConnectedGroup(_ cells: [Cell], pulses: [RelayPulse] = []) -> Int {
         var remaining = Set(cells)
+        var pulseLinks: [Cell: [Cell]] = [:]
+        for pulse in pulses {
+            pulseLinks[pulse.from, default: []].append(pulse.to)
+            pulseLinks[pulse.to, default: []].append(pulse.from)
+        }
         var best = 0
         while let start = remaining.first {
             remaining.remove(start)
@@ -46,7 +51,8 @@ enum Relay {
             var size = 0
             while let cell = stack.popLast() {
                 size += 1
-                for neighbor in Board.neighbors(of: cell) where remaining.contains(neighbor) {
+                let connected = Board.neighbors(of: cell) + pulseLinks[cell, default: []]
+                for neighbor in connected where remaining.contains(neighbor) {
                     remaining.remove(neighbor)
                     stack.append(neighbor)
                 }
@@ -66,7 +72,8 @@ enum Relay {
             guard let plant = board[cell].plant, case let .bloom(stayLeft) = plant.stage else { continue }
             let remaining = stayLeft - 1
             if remaining <= 0 {
-                harvested.append(Harvest(cell: cell, kind: plant.kind, yield: plant.fertilized ? 2 : 1))
+                let yield = plant.kind.harvestYield + (plant.fertilized ? 1 : 0)
+                harvested.append(Harvest(cell: cell, kind: plant.kind, yield: yield))
                 board[cell].plant = nil
             } else {
                 board[cell].plant?.stage = .bloom(stayLeft: remaining)
@@ -105,7 +112,7 @@ enum Relay {
             var nextWave: [Cell] = []
             for cell in current {
                 guard let bloomer = board[cell].plant else { continue }
-                for neighbor in Board.neighbors(of: cell) {
+                for neighbor in bloomer.kind.relayNeighbors(of: cell) {
                     guard let plant = board[neighbor].plant, case let .bud(turnsLeft) = plant.stage else { continue }
                     pulses.append(RelayPulse(from: cell, to: neighbor))
                     let remaining = turnsLeft - bloomer.kind.relayPower
@@ -154,7 +161,7 @@ enum Relay {
             harvested: harvested,
             boardAfterTick: boardAfterTick,
             waves: waves,
-            chain: largestConnectedGroup(allBloomed),
+            chain: largestConnectedGroup(allBloomed, pulses: waves.flatMap(\.pulses)),
             bloomedCount: allBloomed.count,
             bloomedKinds: bloomedKinds,
             pollinatorSeeds: pollinatorSeeds,

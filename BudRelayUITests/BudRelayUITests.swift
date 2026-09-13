@@ -1,5 +1,6 @@
 import XCTest
 
+@MainActor
 final class BudRelayUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -48,12 +49,35 @@ final class BudRelayUITests: XCTestCase {
             button.tap()
             sleep(1)
             saveShot(name)
+            let back = app.buttons["back-button"]
+            XCTAssertTrue(back.waitForExistence(timeout: 5), "Back from \(name)")
+            back.tap()
+            XCTAssertTrue(app.buttons["play-button"].waitForExistence(timeout: 5))
         }
-        app.buttons["nav-home"].tap()
         XCTAssertTrue(app.buttons["map-button"].waitForExistence(timeout: 5))
         app.buttons["map-button"].tap()
         sleep(1)
         saveShot("map")
+    }
+
+    func testDragCardOntoAnEmptyPlot() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["ui-testing"]
+        app.launch()
+        XCTAssertTrue(app.buttons["play-button"].waitForExistence(timeout: 5))
+        app.buttons["play-button"].tap()
+
+        let card = app.buttons["card-0"]
+        let plot = app.buttons["plot-2-2"]
+        XCTAssertTrue(card.waitForExistence(timeout: 5))
+        XCTAssertTrue(plot.waitForExistence(timeout: 5))
+        XCTAssertEqual(plot.label, "Empty plot")
+
+        card.press(forDuration: 0.7, thenDragTo: plot)
+
+        let planted = NSPredicate(format: "label != 'Empty plot'")
+        expectation(for: planted, evaluatedWith: plot)
+        waitForExpectations(timeout: 5)
     }
 
     private func saveShot(_ name: String) {

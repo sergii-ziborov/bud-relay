@@ -6,13 +6,20 @@ struct MarketView: View {
     var body: some View {
         VStack(spacing: 10) {
             HUDBar()
-            ScreenHeader(title: "Market", subtitle: "Local seeds, local hands") { model.goHome() }
+            HStack(spacing: 8) {
+                BackButton(action: model.goHome)
+                Spacer(minLength: 0)
+                LogoView(subtitle: "Market", scale: 0.58)
+                Spacer(minLength: 0)
+                Color.clear.frame(width: 44, height: 44)
+            }
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 12) {
                     ordersBoard
                     basket
                     seedShelf
                     supplyShelf
+                    treeShelf
                     decorShelf
                 }
                 .padding(.bottom, 8)
@@ -185,12 +192,45 @@ struct MarketView: View {
     private var decorShelf: some View {
         shelf(title: "Garden Decor", note: "Some pieces are only earned: the compost bin, bee hotel, rain barrel, herb spiral, and sundial.") {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
-                ForEach(MarketCatalog.decorForSale) { decor in
+                ForEach(MarketCatalog.decorForSale.filter { $0.treeKind == nil }) { decor in
                     productCard(title: decor.name, owned: model.progress.garden.inventory[decor, default: 0], price: decor.price ?? 0, id: "decor-\(decor.rawValue)") {
                         DecorTile(decor: decor)
                             .frame(width: 36, height: 36)
                     } action: {
                         model.buyDecor(decor)
+                    }
+                }
+            }
+        }
+    }
+
+    private var treeShelf: some View {
+        shelf(title: "Orchard Nursery", note: "Trees open with the district. They live permanently on your estate and never enter the relay puzzle.") {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                ForEach(TreeKind.allCases) { tree in
+                    if model.progress.isUnlocked(tree) {
+                        productCard(title: tree.name, owned: model.progress.garden.inventory[tree.decor, default: 0], price: tree.decor.price ?? 0, id: "tree-\(tree.rawValue)") {
+                            GardenTreeView(kind: tree)
+                                .frame(width: 48, height: 48)
+                        } action: {
+                            model.buyDecor(tree.decor)
+                        }
+                    } else {
+                        VStack(spacing: 5) {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 22, weight: .bold))
+                                .foregroundStyle(Palette.inkSoft)
+                                .frame(width: 48, height: 48)
+                            Text(tree.name)
+                                .font(Typography.small)
+                                .foregroundStyle(Palette.ink)
+                            Text("Level \(tree.unlockLevel)")
+                                .font(Typography.small)
+                                .foregroundStyle(Palette.mossDark)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 9)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Palette.paper.opacity(0.86)))
                     }
                 }
             }

@@ -9,7 +9,13 @@ struct DailyView: View {
     var body: some View {
         VStack(spacing: 10) {
             HUDBar()
-            ScreenHeader(title: "Daily Bloom", subtitle: "A new bed every day") { model.goHome() }
+            HStack(spacing: 8) {
+                BackButton(action: model.goHome)
+                Spacer(minLength: 0)
+                LogoView(subtitle: "Daily Bloom", scale: 0.58)
+                Spacer(minLength: 0)
+                Color.clear.frame(width: 44, height: 44)
+            }
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 12) {
                     challengeCard

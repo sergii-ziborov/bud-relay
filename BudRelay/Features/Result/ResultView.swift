@@ -19,8 +19,8 @@ private struct ResultContent: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 14) {
+                HUDBar()
                 title
-                    .padding(.top, 16)
                 if !outcome.isDaily {
                     StarRow(stars: outcome.stars, size: 34)
                         .padding(.top, 4)
@@ -87,6 +87,7 @@ private struct ResultContent: View {
                 statRow("Longest relay", value: "×\(outcome.stats.longestChain)", symbol: "link")
                 statRow("Flowers bloomed", value: "\(outcome.stats.bloomed)", symbol: "camera.macro")
                 statRow("Bee visits", value: "\(outcome.stats.pollinatorBonuses)", symbol: "ant.fill")
+                statRow("Bloom Echo", value: "+\(outcome.gardenEcho)", symbol: "sparkles")
                 statRow("Turns remaining", value: "\(outcome.turnsLeft)", symbol: "clock.fill")
             }
         }
@@ -119,6 +120,9 @@ private struct ResultContent: View {
                 }
                 HStack(spacing: 8) {
                     rewardTile(symbol: "dollarsign.circle.fill", tint: Palette.gold, label: "+\(outcome.coins)", caption: "Coins")
+                    if outcome.gardenEcho > 0 {
+                        rewardTile(symbol: "sparkles", tint: Palette.leafLight, label: "+\(outcome.gardenEcho)", caption: "Garden care")
+                    }
                     ForEach(outcome.flowers.sorted { $0.key.value > $1.key.value }, id: \.key) { kind, count in
                         rewardTile(kind: kind, label: "+\(count)", caption: kind.name)
                     }
@@ -146,6 +150,9 @@ private struct ResultContent: View {
     }
 
     private var footnote: String {
+        if let region = outcome.gardenEchoRegion {
+            return "Your relay brought new life to \(region.name)."
+        }
         if outcome.flowers.isEmpty {
             return "Relays of ×3, ×5, and ×8 earn flowers for orders and your garden."
         }

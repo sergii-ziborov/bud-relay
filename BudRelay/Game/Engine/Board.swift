@@ -96,6 +96,17 @@ struct Board: Codable, Sendable, Hashable {
         ].filter(contains)
     }
 
+    /// All orthogonal and diagonal neighbours around a plot.
+    static func surroundingNeighbors(of cell: Cell) -> [Cell] {
+        (-1...1).flatMap { rowOffset in
+            (-1...1).compactMap { colOffset in
+                guard rowOffset != 0 || colOffset != 0 else { return nil }
+                let neighbor = Cell(cell.row + rowOffset, cell.col + colOffset)
+                return contains(neighbor) ? neighbor : nil
+            }
+        }
+    }
+
     subscript(cell: Cell) -> Plot {
         get { plots[Board.index(of: cell)] }
         set { plots[Board.index(of: cell)] = newValue }

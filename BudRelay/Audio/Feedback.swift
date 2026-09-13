@@ -10,6 +10,18 @@ enum Feedback {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
     }
 
+    static func pickup() {
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred(intensity: 0.72)
+    }
+
+    static func hover() {
+        UISelectionFeedbackGenerator().selectionChanged()
+    }
+
+    static func returnToHand() {
+        UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: 0.55)
+    }
+
     static func bloom() {
         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
     }

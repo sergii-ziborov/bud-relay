@@ -14,6 +14,8 @@ struct LevelOutcome: Hashable, Sendable {
     var unlockedDecor: DecorID?
     var firstClear: Bool
     var dailyBest: Bool
+    var gardenEcho: Int
+    var gardenEchoRegion: GardenRegion?
 }
 
 enum Rewards {
@@ -60,7 +62,9 @@ enum Rewards {
             unlockedKind: nil,
             unlockedDecor: nil,
             firstClear: firstClear,
-            dailyBest: dailyBest
+            dailyBest: dailyBest,
+            gardenEcho: run.won ? run.stats.gardenEcho : 0,
+            gardenEchoRegion: nil
         )
     }
 }

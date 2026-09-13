@@ -8,7 +8,11 @@ struct HowToPlayView: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            ScreenHeader(title: "How to Play", subtitle: "\(page + 1)/\(pageCount)") { model.goHome() }
+            HUDBar()
+            ScreenHeader(title: "How to Play", subtitle: "\(page + 1)/\(pageCount)") {
+                model.markTutorialSeen()
+                model.goHome()
+            }
             TabView(selection: $page) {
                 placePage.tag(0)
                 relayPage.tag(1)
@@ -45,7 +49,7 @@ struct HowToPlayView: View {
             highlighted: [Cell(1, 2), Cell(2, 2), Cell(1, 0), Cell(0, 1), Cell(2, 1)],
             ghost: .daisy,
             lines: [
-                ("hand.tap.fill", "Tap a card, then tap an empty plot. That is one gardening turn."),
+                ("hand.draw.fill", "Drag a card over an empty plot to preview the coming bloom, then release to plant. You can also tap the card, then tap the plot."),
                 ("clock.fill", "The number on a bud is the care cycles left until it blooms. Every turn counts down by one."),
                 ("leaf.fill", "A daisy blooms the turn it is planted. Roses take five turns and wait for a big relay."),
             ]
@@ -70,7 +74,7 @@ struct HowToPlayView: View {
             lines: [
                 ("link", "When a flower blooms it hands one care point to each neighbouring bud. Tulips hand two."),
                 ("sparkles", "A bud that reaches zero blooms too, and passes the momentum on. That wave is a relay."),
-                ("star.fill", "Relays of ×3, ×5, and ×8 earn flowers. Small chain now, or one more turn for a big one?"),
+                ("star.fill", "Relays of ×3, ×5, and ×8 earn flowers. At ×4, the garden hears you: every longer relay sends Bloom Echo to restore an area."),
             ]
         )
     }

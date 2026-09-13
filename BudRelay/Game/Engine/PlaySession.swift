@@ -23,6 +23,9 @@ final class PlaySession {
     var justBloomed: Set<Cell> = []
     var harvestFloaters: [Harvest] = []
     var chainBanner: Int?
+    var echoCelebration: Int?
+    var echoCells: [Cell] = []
+    var echoStartedAt = Date()
     var lastReport: TurnReport?
     var hintsLeft: Int
     var hint: Bot.Move?
@@ -68,6 +71,23 @@ final class PlaySession {
         selectedCard = selectedCard == index ? nil : index
         hint = nil
         if hapticsEnabled { Feedback.tap() }
+    }
+
+    @discardableResult
+    func beginCardDrag(_ index: Int, expectedKind: FlowerKind) -> Bool {
+        guard phase == .planning, hand.indices.contains(index), hand[index] == expectedKind else { return false }
+        selectedTool = nil
+        swapCardIndex = nil
+        selectedCard = index
+        hint = nil
+        if hapticsEnabled { Feedback.pickup() }
+        return true
+    }
+
+    func cancelCardDrag() {
+        selectedCard = nil
+        hint = nil
+        if hapticsEnabled { Feedback.returnToHand() }
     }
 
     func select(tool: Tool) {
@@ -121,16 +141,31 @@ final class PlaySession {
             return
         }
         guard let index = selectedCard else { return }
-        guard run.board.canPlant(at: cell) else {
-            if hapticsEnabled { Feedback.warn() }
-            return
+        if !place(card: index, expectedKind: nil, at: cell), hapticsEnabled {
+            Feedback.warn()
         }
-        guard let report = run.place(card: index, at: cell) else { return }
+    }
+
+    /// Places a card delivered by SwiftUI drag and drop. Tap-to-place calls the
+    /// same path, so both interactions always follow identical game rules.
+    @discardableResult
+    func drop(_ payload: FlowerDragPayload, at cell: Cell) -> Bool {
+        place(card: payload.cardIndex, expectedKind: payload.kind, at: cell)
+    }
+
+    @discardableResult
+    private func place(card index: Int, expectedKind: FlowerKind?, at cell: Cell) -> Bool {
+        guard phase == .planning, hand.indices.contains(index) else { return false }
+        if let expectedKind, hand[index] != expectedKind { return false }
+        guard run.board.canPlant(at: cell) else { return false }
+        guard let report = run.place(card: index, at: cell) else { return false }
         selectedCard = nil
+        selectedTool = nil
         hint = nil
         seedSwapUsedThisTurn = false
         if hapticsEnabled { Feedback.place() }
         Task { await animate(report) }
+        return true
     }
 
     func tend() {
@@ -185,7 +220,15 @@ final class PlaySession {
             }
             try? await Task.sleep(for: .milliseconds(index == 0 ? 360 : 440))
         }
-        if report.chain >= 2 {
+        if report.chain >= 4 {
+            echoCells = report.bloomedCells
+            echoStartedAt = Date()
+            withAnimation(.easeOut(duration: 0.2)) {
+                echoCelebration = (report.chain - 2) / 2
+            }
+            if hapticsEnabled { Feedback.success() }
+            try? await Task.sleep(for: .milliseconds(1050))
+        } else if report.chain >= 2 {
             withAnimation(.spring(duration: 0.4, bounce: 0.4)) {
                 chainBanner = report.chain
             }
@@ -194,6 +237,7 @@ final class PlaySession {
         }
         withAnimation(.easeOut(duration: 0.25)) {
             chainBanner = nil
+            echoCelebration = nil
             justBloomed = []
             activeWave = nil
             displayBoard = run.board
